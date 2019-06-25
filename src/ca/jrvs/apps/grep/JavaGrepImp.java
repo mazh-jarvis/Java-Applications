@@ -6,6 +6,7 @@ import java.util.List;
 
 public class JavaGrepImp implements JavaGrep {
 
+    private String regex;
 
     @Override
     public void process() throws IOException {
@@ -24,7 +25,8 @@ public class JavaGrepImp implements JavaGrep {
 
     @Override
     public boolean containsPattern(String line) {
-        return false;
+
+        return line.matches(this.regex);
     }
 
     @Override
@@ -49,7 +51,7 @@ public class JavaGrepImp implements JavaGrep {
 
     @Override
     public void setRegex(String regex) {
-
+        this.regex = regex;
     }
 
     @Override

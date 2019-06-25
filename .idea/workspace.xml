@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="818cf95c-a6c6-442c-b108-dbe66dd48566" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/ca/jrvs/apps/grep/JavaGrepImpTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java_apps.iml" beforeDir="false" afterPath="$PROJECT_DIR$/java_apps.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_apps/ca/jrvs/apps/grep/JavaGrep/JavaGrep.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ca/jrvs/apps/grep/JavaGrepImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ca/jrvs/apps/grep/JavaGrepImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/ca/jrvs/apps/grep/JavaGrepImpTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ca/jrvs/apps/grep/JavaGrepImpTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,11 +16,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="JavaGrep.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ca/jrvs/apps/grep/JavaGrep.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="-505">
+              <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -31,20 +32,12 @@
       <file leaf-file-name="JavaGrepImp.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ca/jrvs/apps/grep/JavaGrepImp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+            <state relative-caret-position="306">
+              <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#289#290#0" expanded="true" />
-                <element signature="e#316#317#0" expanded="true" />
-                <element signature="e#507#508#0" expanded="true" />
-                <element signature="e#535#536#0" expanded="true" />
-                <element signature="e#675#676#0" expanded="true" />
-                <element signature="e#702#703#0" expanded="true" />
-                <element signature="e#817#818#0" expanded="true" />
-                <element signature="e#844#845#0" expanded="true" />
-                <element signature="e#955#956#0" expanded="true" />
-                <element signature="e#982#983#0" expanded="true" />
+                <element signature="e#937#938#0" expanded="true" />
+                <element signature="e#971#972#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -53,8 +46,8 @@
       <file leaf-file-name="JavaGrepImpTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/ca/jrvs/apps/grep/JavaGrepImpTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+            <state relative-caret-position="378">
+              <caret line="39" column="41" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -88,8 +81,8 @@
         <option value="$PROJECT_DIR$/src/JavaGrep.java" />
         <option value="$PROJECT_DIR$/src/ca/jrvs/apps/grep/ca/jrvs/apps/grep/JavaGrepImp.java" />
         <option value="$PROJECT_DIR$/src/ca/jrvs/apps/grep/JavaGrep.java" />
-        <option value="$PROJECT_DIR$/src/ca/jrvs/apps/grep/JavaGrepImp.java" />
         <option value="$PROJECT_DIR$/src/ca/jrvs/apps/grep/JavaGrepTester.java" />
+        <option value="$PROJECT_DIR$/src/ca/jrvs/apps/grep/JavaGrepImp.java" />
         <option value="$PROJECT_DIR$/tests/ca/jrvs/apps/grep/JavaGrepImpTest.java" />
       </list>
     </option>
@@ -106,7 +99,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -140,8 +135,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -155,6 +148,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -179,6 +173,23 @@
   <component name="RunManager">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="All in java_apps" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java_apps" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -218,6 +229,11 @@
       <properties />
       <listeners />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in java_apps" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -232,61 +248,96 @@
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="All_in_java_apps - 2019.06.25 at 15h 46m 25s.xml">
+      <configuration name="All in java_apps" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_java_apps - 2019.06.25 at 15h 48m 07s.xml">
+      <configuration name="All in java_apps" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_java_apps - 2019.06.25 at 15h 48m 53s.xml">
+      <configuration name="All in java_apps" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_java_apps - 2019.06.25 at 15h 49m 54s.xml">
+      <configuration name="All in java_apps" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_java_apps - 2019.06.25 at 15h 51m 38s.xml">
+      <configuration name="All in java_apps" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_java_apps - 2019.06.25 at 15h 52m 10s.xml">
+      <configuration name="All in java_apps" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_java_apps - 2019.06.25 at 15h 52m 26s.xml">
+      <configuration name="All in java_apps" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_java_apps - 2019.06.25 at 15h 53m 11s.xml">
+      <configuration name="All in java_apps" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_java_apps - 2019.06.25 at 15h 53m 47s.xml">
+      <configuration name="All in java_apps" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_java_apps - 2019.06.25 at 15h 54m 37s.xml">
+      <configuration name="All in java_apps" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="ToolWindowManager">
     <frame x="960" y="27" width="960" height="988" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info id="Image Layers" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info id="Capture Tool" />
-      <window_info id="Designer" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19037199" />
+      <window_info anchor="bottom" id="Messages" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" order="3" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32900944" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="2" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19474836" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" />
-      <window_info anchor="right" id="Theme Preview" />
+      <window_info id="UI Designer" order="2" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/JavaGrep.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="8" selection-start-column="8" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ca/jrvs/apps/grep/ca/jrvs/apps/grep/JavaGrepImp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ca/jrvs/apps/grep/JavaGrep.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ca/jrvs/apps/grep/JavaGrepImp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#937#938#0" expanded="true" />
+            <element signature="e#971#972#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -298,30 +349,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ca/jrvs/apps/grep/JavaGrepImp.java">
+    <entry file="file://$PROJECT_DIR$/tests/ca/jrvs/apps/grep/JavaGrepImpTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#289#290#0" expanded="true" />
-            <element signature="e#316#317#0" expanded="true" />
-            <element signature="e#507#508#0" expanded="true" />
-            <element signature="e#535#536#0" expanded="true" />
-            <element signature="e#675#676#0" expanded="true" />
-            <element signature="e#702#703#0" expanded="true" />
-            <element signature="e#817#818#0" expanded="true" />
-            <element signature="e#844#845#0" expanded="true" />
-            <element signature="e#955#956#0" expanded="true" />
-            <element signature="e#982#983#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/JavaGrepImpTest.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="41" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
+        <state relative-caret-position="198">
+          <caret line="16" column="14" lean-forward="true" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -336,26 +367,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ca/jrvs/apps/grep/JavaGrepImp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#289#290#0" expanded="true" />
-            <element signature="e#316#317#0" expanded="true" />
-            <element signature="e#507#508#0" expanded="true" />
-            <element signature="e#535#536#0" expanded="true" />
-            <element signature="e#675#676#0" expanded="true" />
-            <element signature="e#702#703#0" expanded="true" />
-            <element signature="e#817#818#0" expanded="true" />
-            <element signature="e#844#845#0" expanded="true" />
-            <element signature="e#955#956#0" expanded="true" />
-            <element signature="e#982#983#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ca/jrvs/apps/grep/JavaGrepTester.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -363,10 +374,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ca/jrvs/apps/grep/JavaGrepImp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#937#938#0" expanded="true" />
+            <element signature="e#971#972#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/JavaGrepImpTest.groovy" />
+    <entry file="file://$PROJECT_DIR$/src/JavaGrep.java" />
+    <entry file="file://$PROJECT_DIR$/src/ca/jrvs/apps/grep/ca/jrvs/apps/grep/JavaGrepImp.java" />
+    <entry file="file://$PROJECT_DIR$/src/ca/jrvs/apps/grep/JavaGrepTester.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ca/jrvs/apps/grep/JavaGrep.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-505">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ca/jrvs/apps/grep/JavaGrepImp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#937#938#0" expanded="true" />
+            <element signature="e#971#972#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/ca/jrvs/apps/grep/JavaGrepImpTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+        <state relative-caret-position="378">
+          <caret line="39" column="41" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
         </state>
       </provider>
     </entry>
