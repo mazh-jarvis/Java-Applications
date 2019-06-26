@@ -1,7 +1,6 @@
 package ca.jrvs.apps.grep;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +13,7 @@ public class JavaGrepImp implements JavaGrep {
 
     @Override
     public void process() throws IOException {
-         matchedLines = new ArrayList<>();
-
+        matchedLines = new ArrayList<>();
         for(File file: listFiles(getRootPath())) {
             for (String line: readLines(file))
                 if (containsPattern(line))
@@ -38,8 +36,12 @@ public class JavaGrepImp implements JavaGrep {
     }
 
     @Override
-    public List<String> readLines(File inputFile) throws IllegalArgumentException {
-        return null;
+    public List<String> readLines(File inputFile)
+            throws IllegalArgumentException, FileNotFoundException {
+        List<String> lines = new ArrayList<>();
+        BufferedReader in = new BufferedReader(new FileReader(inputFile));
+        in.lines().forEach(lines::add);
+        return lines;
     }
 
     @Override
