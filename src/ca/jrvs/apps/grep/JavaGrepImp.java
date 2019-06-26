@@ -2,12 +2,14 @@ package ca.jrvs.apps.grep;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class JavaGrepImp implements JavaGrep {
 
     private String regex,
-            rootPath;
+            rootPath,
+            outFile;
     private List<String> matchedLines;
     private List<File> files;
 
@@ -19,19 +21,21 @@ public class JavaGrepImp implements JavaGrep {
                 if (containsPattern(line))
                     matchedLines.add(line);
         }
+        writeToFile(matchedLines);
     }
 
     @Override
     public List<File> listFiles(String rootDir) {
         if(files == null)
             files = new ArrayList<>();
-        File file = new File(rootDir);
-        for(File currentFile: file.listFiles()) {
-            if(currentFile.isFile())
-                files.add(currentFile);
+        File root = new File(rootDir);
+
+        Arrays.stream(root.listFiles()).forEach(file -> {
+            if(file.isFile())
+                files.add(file);
             else
-                listFiles(currentFile.getPath());
-        }
+                listFiles(file.getPath());
+        });
         return files;
     }
 
@@ -52,7 +56,13 @@ public class JavaGrepImp implements JavaGrep {
 
     @Override
     public void writeToFile(List<String> lines) throws IOException {
-
+        Writer out =  new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream(this.outFile)));
+//        lines.stream().forEach(out::append);
+        for(String line: lines)
+            out.append(line)
+                    .append("\n");
+        out.close();
     }
 
     @Override
@@ -77,11 +87,11 @@ public class JavaGrepImp implements JavaGrep {
 
     @Override
     public String getOutFile() {
-        return null;
+        return outFile;
     }
 
     @Override
     public void setOutFile(String outFile) {
-
+        this.outFile = outFile;
     }
 }
