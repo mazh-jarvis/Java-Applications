@@ -2,20 +2,39 @@ package ca.jrvs.apps.grep;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JavaGrepImp implements JavaGrep {
 
-    private String regex;
+    private String regex,
+            rootPath;
+    private List<String> matchedLines;
+    private List<File> files;
 
     @Override
     public void process() throws IOException {
+         matchedLines = new ArrayList<>();
 
+        for(File file: listFiles(getRootPath())) {
+            for (String line: readLines(file))
+                if (containsPattern(line))
+                    matchedLines.add(line);
+        }
     }
 
     @Override
     public List<File> listFiles(String rootDir) {
-        return null;
+        if(files == null)
+            files = new ArrayList<>();
+        File file = new File(rootDir);
+        for(File currentFile: file.listFiles()) {
+            if(currentFile.isFile())
+                files.add(currentFile);
+            else
+                listFiles(currentFile.getPath());
+        }
+        return files;
     }
 
     @Override
@@ -36,17 +55,17 @@ public class JavaGrepImp implements JavaGrep {
 
     @Override
     public String getRootPath() {
-        return null;
+        return rootPath;
     }
 
     @Override
     public void setRootPath(String rootPath) {
-
+        this.rootPath = rootPath;
     }
 
     @Override
     public String getRegex() {
-        return null;
+        return regex;
     }
 
     @Override

@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface JavaGrep {
     /**
-     * Top level seach flow
+     * Top level search flow
      * @throws IOException
      */
     void process() throws IOException;
