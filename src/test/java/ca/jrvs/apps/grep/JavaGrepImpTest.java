@@ -40,13 +40,4 @@ public class JavaGrepImpTest {
         assertTrue(grep.containsPattern(""));
     }
 
-    @Test
-    public void grepReadLines() {
-        try {
-            List<String> files = grep.readLines(new File("/home/milad/code/jarvis/bash_sql/regex/q1"));
-            files.stream().forEach(System.out::println);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
 }
