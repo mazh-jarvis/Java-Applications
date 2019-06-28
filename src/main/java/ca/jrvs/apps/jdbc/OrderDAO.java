@@ -30,18 +30,19 @@ public class OrderDAO extends DataAccessObject<Order> {
         try(PreparedStatement statement = this.connection.prepareStatement(GET_ORDER)) {
             statement.setLong(1, id);   // set sql query's positional parameter
             ResultSet rs = statement.executeQuery();
-/*
-
             while (rs.next()) {
-
+                order.setId(rs.getLong("order_id"));
+                order.setCreationDate(rs.getString("create_date"));
+                order.setTotalDue(rs.getLong("total_due"));
+                order.setStatus(rs.getString("status"));
+                order.setCustomerId(rs.getLong("customer_id"));
+                order.setSalespersonId(rs.getLong("salesperson_id"));
             }
-*/
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        return null;
+        return order;
     }
 
     @Override
