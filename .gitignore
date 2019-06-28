@@ -1,4 +1,5 @@
 out/
 *.zip
-java_apps/.idea/
-java_apps/target/
+.idea/
+target/
+sql/
