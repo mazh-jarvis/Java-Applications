@@ -1,4 +1,4 @@
 out/
 *.zip
-.idea/
-target/
+java_apps/.idea/
+java_apps/target/
