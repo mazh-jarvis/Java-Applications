@@ -5,9 +5,7 @@ import ca.jrvs.apps.jdbc.util.DataTransferObject;
 public class Order implements DataTransferObject {
 
     private long id,
-        totalDue,
-        customerId,
-        salespersonId;
+        totalDue;
     private String creationDate,
         status;
 
@@ -28,22 +26,6 @@ public class Order implements DataTransferObject {
         this.totalDue = totalDue;
     }
 
-    public long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(long customerId) {
-        this.customerId = customerId;
-    }
-
-    public long getSalespersonId() {
-        return salespersonId;
-    }
-
-    public void setSalespersonId(long salespersonId) {
-        this.salespersonId = salespersonId;
-    }
-
     public String getCreationDate() {
         return creationDate;
     }
@@ -58,5 +40,15 @@ public class Order implements DataTransferObject {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", totalDue=" + totalDue +
+                ", creationDate='" + creationDate + '\'' +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

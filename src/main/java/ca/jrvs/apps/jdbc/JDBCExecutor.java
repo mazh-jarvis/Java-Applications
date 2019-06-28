@@ -6,13 +6,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class JDBCExecutor {
+    private static final long ORDER_ID = 1050;
     public static void main(String[] args) {
         DatabaseConnectionManager connectionManager =
                 new DatabaseConnectionManager("localhost",
                         "jdbc_app", "postgres", "petrop");
-        try{
+        try {
             Connection connection = connectionManager.getConnection();
-            CustomerDAO customerDAO = new CustomerDAO(connection);
+            /*CustomerDAO customerDAO = new CustomerDAO(connection);*/
             /*Customer customer = new Customer();
             customer.setFirstName("John");
             customer.setLastName("Smith");
@@ -24,9 +25,13 @@ public class JDBCExecutor {
             customer.setZipCode("95723");
             customerDAO.create(customer);
 */
+           /*
             Customer customer = customerDAO.findById(1000);
-            System.out.println(customer);
+            System.out.println(customer);*/
+            OrderDAO orderDAO = new OrderDAO(connection);
+            Order order = orderDAO.findById(1050);
             connection.close();
+            System.out.println(order);
             /*Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT COUNT(*) FROM CUSTOMER;");*/
 
