@@ -11,7 +11,8 @@ import java.util.List;
 public class OrderDAO extends DataAccessObject<Order> {
 
     private static final String GET_ORDER = "SELECT " +
-            "c.first_name, c.last_name, c.email, o.order_id," +
+            "c.first_name as c_first_name, c.last_name c_last_name, " +
+            "c.email c_email, o.order_id," +
             "o.creation_date, o.total_due, o.status," +
             "s.first_name, s.last_name, s.email," +
             "ol.quantity, p.code, p.name, p.size, p.variety, p.price " +
@@ -32,9 +33,15 @@ public class OrderDAO extends DataAccessObject<Order> {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 order.setId(rs.getLong("order_id"));
-                order.setCreationDate(rs.getString("creation_date"));
-                order.setTotalDue(rs.getLong("total_due"));
+                order.setCreationDate(rs.getDate("creation_date"));
+                order.setTotalDue(rs.getBigDecimal("total_due"));
                 order.setStatus(rs.getString("status"));
+                order.setCustomerEmail(rs.getString("c_email"));
+                order.setCustomerFName(rs.getString("c_first_name"));
+                order.setCustomerLName(rs.getString("c_last_name"));
+                order.setSalesFName(rs.getString("first_name"));
+                order.setSalesLName(rs.getString("last_name"));
+                order.setSalesEmail(rs.getString("email"));
 //                order.setCustomerId(rs.getLong("customer_id"));
 //                order.setSalespersonId(rs.getLong("salesperson_id"));
             }
