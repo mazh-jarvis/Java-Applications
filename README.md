@@ -10,6 +10,9 @@ It searches for any regex PATTERN found in the files in the DIRECTORY recursivel
 ## Introduction
 This Java application interacts with a Postgres database server. The current demo displays some data retrieved from 3 tables. 
 
+## Usage
+`java JDBCExecutor`
+
 # Java Twitter App
 ## Introduction
 This Java application interacts with the Twitter API in order to manage user tweets.

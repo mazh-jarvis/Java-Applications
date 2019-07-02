@@ -15,14 +15,21 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class TwitterApiTest {
-    private static final String CONSUMER_KEY = "MYzrKCMu6U1f06ia1rGRUtzGk",
-        CONSUMER_SECRET = "QMkiLlMnb15ecSfcoubmevfgIFGxR2KYPv52KBvRbVvczjAPOq",
-        ACCESS_TOKEN = "1144304278728843264-vIU3F7ybqpK8EbcPoBfSHrVyRMVixC",
-        TOKEN_SECRET = "4my4bJyQrd2FLkqJuMW3urdlpD79GMMnwMqBtwNSmT7ZT";
+    private static String CONSUMER_KEY,
+        CONSUMER_SECRET,
+        ACCESS_TOKEN,
+        TOKEN_SECRET;
+
     private static final String TW_SEARCH_RQ =
             "https://api.twitter.com/1.1/users/search.json?q=realDonaldTrump";
 
     public static void main(String[] args) {
+
+        if(args.length != 4) {
+            System.err.println("USAGE: java TwitterApiTest CONSUMER_KEY CONSUMER_SECRET ACCESS_TOKEN TOKEN_SECRET");
+        }
+
+        CONSUMER_KEY = args[1];
 
         OAuthConsumer consumer =
                 new CommonsHttpOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
