@@ -3,7 +3,7 @@ package ca.jrvs.apps.grep;
 import java.io.File;
 import java.util.List;
 
-public class JavaGrepRunner {
+public class JavaGrepApp {
     public static void main(String[] args) {
         if (args.length != 3)
             throw new IllegalArgumentException(
