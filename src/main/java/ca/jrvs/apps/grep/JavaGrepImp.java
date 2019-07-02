@@ -4,18 +4,17 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class JavaGrepImp implements JavaGrep {
 
     private String regex,
             rootPath,
             outFile;
-    private List<String> matchedLines;
-    private List<File> files;
 
     @Override
     public void process() throws IOException {
-        matchedLines = new ArrayList<>();
+        List<String> matchedLines = new ArrayList<>();
         for(File file: listFiles(getRootPath())) {
             for (String line: readLines(file))
                 if (containsPattern(line))
@@ -26,17 +25,7 @@ public class JavaGrepImp implements JavaGrep {
 
     @Override
     public List<File> listFiles(String rootDir) {
-        if(files == null)
-            files = new ArrayList<>();
-        File root = new File(rootDir);
-
-        Arrays.stream(root.listFiles()).forEach(file -> {
-            if(file.isFile())
-                files.add(file);
-            else
-                listFiles(file.getPath());
-        });
-        return files;
+        return Arrays.stream(new File(rootDir).listFiles()).filter(file -> file.isFile()).collect(Collectors.toList());
     }
 
     @Override

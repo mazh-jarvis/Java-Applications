@@ -16,11 +16,6 @@ public class JavaGrepApp {
 
         try {
             javaGrepImp.process();
-/*
-            List<String> files = javaGrepImp.readLines(new File("/home/milad/code/jarvis/bash_sql/regex/q3"));
-            files.stream().forEach(System.out::println);
-            List<File> files = javaGrepImp.listFiles(javaGrepImp.getRootPath());
-            files.stream().forEach(System.out::println);*/
         } catch (Exception ex) {
             ex.printStackTrace();
         }
