@@ -3,6 +3,7 @@ package ca.jrvs.apps.twitter.dao;
 import ca.jrvs.apps.twitter.dao.helper.DaoHelper;
 import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 import ca.jrvs.apps.twitter.dao.helper.Keys;
+import ca.jrvs.apps.twitter.dao.helper.URIBuilder;
 import ca.jrvs.apps.twitter.dto.Tweet;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -63,7 +64,9 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
             System.err.println("# ERROR: Invalid ID format!");
             return null;
         }
-        URI uri = new URI(BASE_URI + "/show.json?id=" + s);
+        // build the request URI
+        URI uri = new URI(new URIBuilder().base(BASE_URI)
+                        .endpoint("show").param("id", s).toString());
         HttpResponse response = httpGet(uri);
         int status = response.getStatusLine().getStatusCode();
         if(status != 200) {
