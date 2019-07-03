@@ -1,5 +1,9 @@
 package ca.jrvs.apps.twitter.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
@@ -12,21 +16,35 @@ tweet_text - tweet_text cannot exceed 140
 UTF-8 encoded characters.
 latitude:longitude - Geo location.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Tweet {
-    private Date createdAt;
+    private Date created_at;
     private long id;
-    private String idStr;
+    private String id_str;
     private String text;
-    private Map<String, Entities> entities;
+//    private Map<String, Entities> entities;
+    private Entities entities;
     private Coordinates coordinates;
-    private int retweetCount, favoriteCount;
+    private int retweet_count, favorite_count;
     private boolean favorited, retweeted;
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public void setCreated_at(String created_at) throws ParseException {
+        this.created_at = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy").parse(created_at);
     }
 
-    public Map<String, Entities> getEntities() {
+    public void setEntities(Entities entities) {
+        this.entities = entities;
+    }
+
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
+    }
+
+    public Date getCreated_at() {
+        return created_at;
+    }
+
+    public Entities getEntities() {
         return entities;
     }
 
@@ -42,12 +60,12 @@ public class Tweet {
         this.id = id;
     }
 
-    public String getIdStr() {
-        return idStr;
+    public String getId_str() {
+        return id_str;
     }
 
-    public void setIdStr(String idStr) {
-        this.idStr = idStr;
+    public void setId_str(String id_str) {
+        this.id_str = id_str;
     }
 
     public String getText() {
@@ -58,20 +76,20 @@ public class Tweet {
         this.text = text;
     }
 
-    public int getRetweetCount() {
-        return retweetCount;
+    public int getRetweet_count() {
+        return retweet_count;
     }
 
-    public void setRetweetCount(int retweetCount) {
-        this.retweetCount = retweetCount;
+    public void setRetweet_count(int retweet_count) {
+        this.retweet_count = retweet_count;
     }
 
-    public int getFavoriteCount() {
-        return favoriteCount;
+    public int getFavorite_count() {
+        return favorite_count;
     }
 
-    public void setFavoriteCount(int favoriteCount) {
-        this.favoriteCount = favoriteCount;
+    public void setFavorite_count(int favorite_count) {
+        this.favorite_count = favorite_count;
     }
 
     public boolean isFavorited() {
@@ -88,5 +106,18 @@ public class Tweet {
 
     public void setRetweeted(boolean retweeted) {
         this.retweeted = retweeted;
+    }
+
+    @Override
+    public String toString() {
+        return "Tweet{" +
+                "id=" + id +
+                ", id_str='" + id_str + '\'' +
+                ", text='" + text + '\'' +
+                ", retweet_count=" + retweet_count +
+                ", favorite_count=" + favorite_count +
+                ", favorited=" + favorited +
+                ", retweeted=" + retweeted +
+                '}';
     }
 }

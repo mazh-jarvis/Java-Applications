@@ -4,13 +4,13 @@ import java.util.List;
 
 public class Entities {
     private List<Hashtag> hashtags;
-    private List<UserMention> userMentions;
+    private List<UserMention> user_mentions;
 
     public List<Hashtag> getHashtags() {
         return hashtags;
     }
 
-    public List<UserMention> getUserMentions() {
-        return userMentions;
+    public List<UserMention> getUser_mentions() {
+        return user_mentions;
     }
 }
