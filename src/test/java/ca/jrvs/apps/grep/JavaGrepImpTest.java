@@ -2,8 +2,6 @@ package ca.jrvs.apps.grep;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import java.io.File;
-import java.util.List;
 import static junit.framework.TestCase.assertTrue;
 
 public class JavaGrepImpTest {
