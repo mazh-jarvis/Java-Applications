@@ -1,5 +1,6 @@
 package ca.jrvs.apps.twitter.dao;
 
+import ca.jrvs.apps.twitter.dao.helper.DaoHelper;
 import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 import ca.jrvs.apps.twitter.dao.helper.Keys;
 import ca.jrvs.apps.twitter.dto.Tweet;
@@ -67,8 +68,11 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
 
     @Override
     public Tweet findById(String s) throws URISyntaxException, IOException {
-        List<Tweet> tweets = null;
-        URI uri = new URI(BASE_URI + "/user_timeline.json?screen_name=" + s);
+        if(DaoHelper.validateIDStr(s) == false) {
+            System.err.println("# ERROR: Invalid ID format!");
+            return null;
+        }
+        URI uri = new URI(BASE_URI + "/show.json?id=" + s);
         HttpResponse response = httpGet(uri);
         int status = response.getStatusLine().getStatusCode();
         if(status != 200) {
@@ -76,16 +80,13 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
             return null;
         }
         // json stream
-        InputStream in = response.getEntity().getContent();
+        InputStream jsonIn = response.getEntity().getContent();
 
         // json object mapper setup
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-        tweets = objectMapper.reader()
-                .forType(new TypeReference<List<Tweet>>() {})
-                .readValue(in);
-        return tweets.get(0);
+        return objectMapper.readValue(jsonIn, Tweet.class);
     }
 
     @Override
@@ -105,9 +106,5 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
         return null;
     }
 
-    // Validate ID string challenge
-    public boolean validateIDStr(String id) {
-        Stream<Character> charStream = id.chars().mapToObj(c -> (char)c);
-        return charStream.allMatch(Character::isDigit);
-    }
+
 }

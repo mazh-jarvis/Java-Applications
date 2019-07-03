@@ -1,5 +1,6 @@
 package ca.jrvs.apps.twitter.dao;
 
+import ca.jrvs.apps.twitter.dao.helper.DaoHelper;
 import ca.jrvs.apps.twitter.dto.Tweet;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.junit.BeforeClass;
@@ -25,11 +26,11 @@ public class TwitterRestDaoTest {
      */
     @Test
     public void idTest1(){
-        assertTrue(dao.validateIDStr("59175"));
+        assertTrue(DaoHelper.validateIDStr("59175"));
     }
     @Test
     public void idTest2(){
-        assertFalse(dao.validateIDStr("30d95"));
+        assertFalse(DaoHelper.validateIDStr("30d95"));
     }
 
     /**
@@ -38,8 +39,8 @@ public class TwitterRestDaoTest {
     @Test
     public void getTweetTest() {
         try {
-            Tweet tweet = dao.findById("realDonaldTrump");
-//            System.out.println(">> TWEET: " + tweet);
+            Tweet tweet = dao.findById("1146435093491277824");
+//            System.out.println(tweet);
             assertNotNull(tweet);
         } catch (URISyntaxException e) {
             e.printStackTrace();
