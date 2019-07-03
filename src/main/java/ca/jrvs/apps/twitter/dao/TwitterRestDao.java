@@ -4,8 +4,6 @@ import ca.jrvs.apps.twitter.dao.helper.DaoHelper;
 import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 import ca.jrvs.apps.twitter.dao.helper.Keys;
 import ca.jrvs.apps.twitter.dto.Tweet;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import oauth.signpost.OAuthConsumer;
@@ -19,12 +17,10 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper {
     public static final String BASE_URI = "https://api.twitter.com/1.1/statuses";
@@ -42,11 +38,11 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
     @Override
     public HttpResponse httpGet(URI uri) throws IOException {
         HttpGet request = new HttpGet(uri.toString());
+        // oauth signer
         OAuthConsumer consumer =
                 new CommonsHttpOAuthConsumer(Keys.CONSUMER_KEY, Keys.CONSUMER_SECRET);
-
+        // assign access tokens
         consumer.setTokenWithSecret(Keys.ACCESS_TOKEN, Keys.TOKEN_SECRET);
-
         // sign the request
         try {
             consumer.sign(request);
@@ -59,11 +55,6 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
         }
         HttpClient client = new DefaultHttpClient();
         return client.execute(request);
-    }
-
-    @Override
-    public Tweet save(Tweet entity) {
-        return null;
     }
 
     @Override
@@ -81,12 +72,12 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
         }
         // json stream
         InputStream jsonIn = response.getEntity().getContent();
+        return DaoHelper.toObjectFromJson(jsonIn, Tweet.class);
+    }
 
-        // json object mapper setup
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
-        return objectMapper.readValue(jsonIn, Tweet.class);
+    @Override
+    public Tweet save(Tweet entity) {
+        return null;
     }
 
     @Override
@@ -94,17 +85,7 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
         return null;
     }
 
-    public void postTweet() {
-
-    }
-
-    public void deleteTweet() {
-
-    }
-
     private String getShowUri() {
         return null;
     }
-
-
 }
