@@ -67,7 +67,6 @@ public class TwitterRestDaoTest {
             savedTweet = dao.save(new Tweet("Tweet to be deleted."));
             String idStr = savedTweet.getId_str();
             result = dao.deleteById(idStr);
-            System.out.println(result); // TODO: remove debug
             assertNotNull(result);
         } catch (URISyntaxException e) {
             e.printStackTrace();
