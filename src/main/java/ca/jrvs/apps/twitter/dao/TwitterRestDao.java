@@ -59,7 +59,7 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
     }
 
     @Override
-    public Tweet save(Tweet entity) throws URISyntaxException, IOException {
+    public Tweet create(Tweet entity) throws URISyntaxException, IOException {
         if(entity == null) return null;
         URI uri = new URI(new URIBuilder().base(DaoHelper.BASE_URI)
                 .endpoint(DaoHelper.ENDPOINT_UPDATE)

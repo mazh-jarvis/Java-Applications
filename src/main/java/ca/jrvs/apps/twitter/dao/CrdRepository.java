@@ -14,7 +14,7 @@ public interface CrdRepository<T, ID> {
      * @throws URISyntaxException
      * @throws IOException
      */
-    T save(T entity) throws URISyntaxException, IOException;
+    T create(T entity) throws URISyntaxException, IOException;
 
     /**
      * Show a twitter status

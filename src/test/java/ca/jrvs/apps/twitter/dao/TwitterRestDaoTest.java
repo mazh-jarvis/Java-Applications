@@ -46,11 +46,11 @@ public class TwitterRestDaoTest {
         }
     }
     @Test
-    public void saveTweetTest() {
-        Tweet tweet = new Tweet("Save tweet test 2");
+    public void createTweetTest() {
+        Tweet tweet = new Tweet("Create tweet test 2");
         Tweet result = null;
         try {
-            result = dao.save(tweet);
+            result = dao.create(tweet);
             assertNotNull(result);
         } catch (URISyntaxException e) {
             e.printStackTrace();
@@ -63,7 +63,7 @@ public class TwitterRestDaoTest {
     public void deleteTweetTest() {
         Tweet savedTweet, result = null;
         try {
-            savedTweet = dao.save(new Tweet("Tweet to be deleted."));
+            savedTweet = dao.create(new Tweet("Tweet to be deleted."));
             String idStr = savedTweet.getId_str();
             result = dao.deleteById(idStr);
             assertNotNull(result);
