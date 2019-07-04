@@ -49,7 +49,7 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
             return null;
         // build the request URI
         URI uri = new URI(new URIBuilder().base(DaoHelper.BASE_URI)
-                    .endpoint("show").param("id", s).toString());
+                    .endpoint(DaoHelper.ENDPOINT_GET).param(DaoHelper.PARAM_GET, s).toString());
         HttpResponse response = httpGet(uri);
         if(DaoHelper.checkStatus(response) == false)
             return null;
@@ -62,8 +62,8 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
     public Tweet save(Tweet entity) throws URISyntaxException, IOException {
         if(entity == null) return null;
         URI uri = new URI(new URIBuilder().base(DaoHelper.BASE_URI)
-                .endpoint("update")
-                .param("status", entity.getText())
+                .endpoint(DaoHelper.ENDPOINT_UPDATE)
+                .param(DaoHelper.PARAM_UPDATE, entity.getText())
                 .toString());
         HttpResponse response = httpPost(uri);
         if (DaoHelper.checkStatus(response) == false )
@@ -77,7 +77,7 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
         if(DaoHelper.validateIDStr(s) == false)
             return null;
         URI uri = new URI(new URIBuilder().base(DaoHelper.BASE_URI)
-            .route("destroy")
+            .route(DaoHelper.ROUTE_DELETE)
             .endpoint(s)
             .toString());
         HttpResponse response = httpPost(uri);
