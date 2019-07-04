@@ -4,6 +4,12 @@ import ca.jrvs.apps.twitter.dto.Tweet;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import oauth.signpost.OAuthConsumer;
+import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
+import oauth.signpost.exception.OAuthCommunicationException;
+import oauth.signpost.exception.OAuthExpectationFailedException;
+import oauth.signpost.exception.OAuthMessageSignerException;
+import org.apache.http.client.methods.HttpRequestBase;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -72,5 +78,22 @@ public class DaoHelper {
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         }
         return mapper;
+    }
+
+    public static void signRequest(HttpRequestBase request) {
+        OAuthConsumer consumer =
+                new CommonsHttpOAuthConsumer(Keys.CONSUMER_KEY, Keys.CONSUMER_SECRET);
+        // assign access tokens
+        consumer.setTokenWithSecret(Keys.ACCESS_TOKEN, Keys.TOKEN_SECRET);
+        // sign the request
+        try {
+            consumer.sign(request);
+        } catch (OAuthMessageSignerException e) {
+            e.printStackTrace();
+        } catch (OAuthExpectationFailedException e) {
+            e.printStackTrace();
+        } catch (OAuthCommunicationException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -8,6 +8,6 @@ import java.net.URI;
 
 public interface HttpHelper {
     HttpResponse httpPost(URI uri);
-    HttpResponse httpPost(URI uri, StringEntity stringEntity);
+    HttpResponse httpPost(URI uri, StringEntity stringEntity) throws IOException;
     HttpResponse httpGet(URI uri) throws IOException;
 }
