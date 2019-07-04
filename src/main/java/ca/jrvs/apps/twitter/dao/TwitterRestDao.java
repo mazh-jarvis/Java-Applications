@@ -4,8 +4,6 @@ import ca.jrvs.apps.twitter.dao.helper.DaoHelper;
 import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 import ca.jrvs.apps.twitter.dao.helper.URIBuilder;
 import ca.jrvs.apps.twitter.dto.Tweet;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import jdk.internal.util.xml.impl.Input;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -15,7 +13,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -49,7 +46,7 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
             return null;
         // build the request URI
         URI uri = new URI(new URIBuilder().base(DaoHelper.BASE_URI)
-                        .endpoint("show").param("id", s).toString());
+                    .endpoint("show").param("id", s).toString());
         HttpResponse response = httpGet(uri);
         if(DaoHelper.checkStatus(response) == false)
             return null;
@@ -62,9 +59,10 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
     public Tweet save(Tweet entity) throws URISyntaxException, IOException {
         if(entity == null) return null;
         URI uri = new URI(new URIBuilder().base(DaoHelper.BASE_URI)
-                .endpoint("update").toString());
-        String json = DaoHelper.toJson(entity, true, false);
-        HttpResponse response = httpPost(uri, new StringEntity(json));
+                .endpoint("update")
+                .param("status", entity.getStatus())
+                .toString());
+        HttpResponse response = httpPost(uri, null);
         if (DaoHelper.checkStatus(response) == false )
             return null;
         InputStream jsonResponse = response.getEntity().getContent();
@@ -76,7 +74,4 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
         return null;
     }
 
-    private String getShowUri() {
-        return null;
-    }
 }

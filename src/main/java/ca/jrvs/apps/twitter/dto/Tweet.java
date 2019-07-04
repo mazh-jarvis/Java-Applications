@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Map;
 
 /*
 * Description: Create a tweet with a geotag and
@@ -18,18 +17,25 @@ latitude:longitude - Geo location.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Tweet {
+    public static final String DATE_FORMAT = "EEE MMM dd HH:mm:ss Z yyyy";
     private Date created_at;
     private long id;
     private String id_str;
-    private String text;
-//    private Map<String, Entities> entities;
+    private String status;
     private Entities entities;
     private Coordinates coordinates;
     private int retweet_count, favorite_count;
     private boolean favorited, retweeted;
 
+    // Default constructor is required by the json parser
+    public Tweet() {}
+
+    public Tweet(String status) {
+        this.status = status;
+    }
+
     public void setCreated_at(String created_at) throws ParseException {
-        this.created_at = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy").parse(created_at);
+        this.created_at = new SimpleDateFormat(DATE_FORMAT).parse(created_at);
     }
 
     public void setEntities(Entities entities) {
@@ -68,12 +74,12 @@ public class Tweet {
         this.id_str = id_str;
     }
 
-    public String getText() {
-        return text;
+    public String getStatus() {
+        return status;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getRetweet_count() {
@@ -113,7 +119,7 @@ public class Tweet {
         return "Tweet{" +
                 "id=" + id +
                 ", id_str='" + id_str + '\'' +
-                ", text='" + text + '\'' +
+                ", status='" + status + '\'' +
                 ", retweet_count=" + retweet_count +
                 ", favorite_count=" + favorite_count +
                 ", favorited=" + favorited +

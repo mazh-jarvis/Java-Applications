@@ -20,6 +20,7 @@ public class DaoHelper {
 
     public static final int HTTP_OK = 200;
     public static final String BASE_URI = "https://api.twitter.com/1.1/statuses";
+    public static final String URI_ENC = "utf-8";
 
     private static ObjectMapper mapper;
 
