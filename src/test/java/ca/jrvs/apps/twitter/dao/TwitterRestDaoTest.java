@@ -58,7 +58,21 @@ public class TwitterRestDaoTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
+    @Test
+    public void deleteTweetTest() {
+        Tweet savedTweet, result = null;
+        try {
+            savedTweet = dao.save(new Tweet("Tweet to be deleted."));
+            String idStr = savedTweet.getId_str();
+            result = dao.deleteById(idStr);
+            System.out.println(result); // TODO: remove debug
+            assertNotNull(result);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

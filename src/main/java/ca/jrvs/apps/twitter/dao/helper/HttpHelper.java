@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.net.URI;
 
 public interface HttpHelper {
-    HttpResponse httpPost(URI uri);
+    HttpResponse httpPost(URI uri) throws IOException;
     HttpResponse httpPost(URI uri, StringEntity stringEntity) throws IOException;
     HttpResponse httpGet(URI uri) throws IOException;
 }

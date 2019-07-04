@@ -9,5 +9,5 @@ import java.net.URISyntaxException;
 public interface CrdRepository<T, ID> {
     T save(T entity) throws URISyntaxException, IOException;
     T findById(ID id) throws IOException, URISyntaxException;
-    T deleteById(ID id);
+    T deleteById(ID id) throws URISyntaxException, IOException;
 }

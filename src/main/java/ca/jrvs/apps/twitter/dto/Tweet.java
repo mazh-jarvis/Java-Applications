@@ -21,7 +21,7 @@ public class Tweet {
     private Date created_at;
     private long id;
     private String id_str;
-    private String status;
+    private String text;
     private Entities entities;
     private Coordinates coordinates;
     private int retweet_count, favorite_count;
@@ -30,8 +30,8 @@ public class Tweet {
     // Default constructor is required by the json parser
     public Tweet() {}
 
-    public Tweet(String status) {
-        this.status = status;
+    public Tweet(String text) {
+        this.text = text;
     }
 
     public void setCreated_at(String created_at) throws ParseException {
@@ -74,12 +74,12 @@ public class Tweet {
         this.id_str = id_str;
     }
 
-    public String getStatus() {
-        return status;
+    public String getText() {
+        return text;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setText(String text) {
+        this.text = text;
     }
 
     public int getRetweet_count() {
@@ -119,7 +119,7 @@ public class Tweet {
         return "Tweet{" +
                 "id=" + id +
                 ", id_str='" + id_str + '\'' +
-                ", status='" + status + '\'' +
+                ", text='" + text + '\'' +
                 ", retweet_count=" + retweet_count +
                 ", favorite_count=" + favorite_count +
                 ", favorited=" + favorited +

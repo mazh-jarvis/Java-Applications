@@ -47,6 +47,10 @@ public class URIBuilder {
         return this;
     }
 
+    public URIBuilder route(String route) {
+        this.URIString.append("/" + route);
+        return this;
+    }
     @Override
     public String toString() {
         return URIString.toString();

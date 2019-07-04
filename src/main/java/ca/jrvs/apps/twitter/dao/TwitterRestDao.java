@@ -19,8 +19,11 @@ import java.net.URISyntaxException;
 public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper {
 
     @Override
-    public HttpResponse httpPost(URI uri) {
-        return null;
+    public HttpResponse httpPost(URI uri) throws IOException {
+        HttpPost request = new HttpPost(uri.toString());
+        DaoHelper.signRequest(request);
+        HttpClient client = new DefaultHttpClient();
+        return client.execute(request);
     }
 
     @Override
@@ -60,9 +63,9 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
         if(entity == null) return null;
         URI uri = new URI(new URIBuilder().base(DaoHelper.BASE_URI)
                 .endpoint("update")
-                .param("status", entity.getStatus())
+                .param("status", entity.getText())
                 .toString());
-        HttpResponse response = httpPost(uri, null);
+        HttpResponse response = httpPost(uri);
         if (DaoHelper.checkStatus(response) == false )
             return null;
         InputStream jsonResponse = response.getEntity().getContent();
@@ -70,8 +73,18 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
     }
 
     @Override
-    public Tweet deleteById(String s) {
-        return null;
+    public Tweet deleteById(String s) throws URISyntaxException, IOException {
+        if(DaoHelper.validateIDStr(s) == false)
+            return null;
+        URI uri = new URI(new URIBuilder().base(DaoHelper.BASE_URI)
+            .route("destroy")
+            .endpoint(s)
+            .toString());
+        HttpResponse response = httpPost(uri);
+        if (DaoHelper.checkStatus(response) == false )
+            return null;
+        InputStream jsonResponse = response.getEntity().getContent();
+        return DaoHelper.toObjectFromJson(jsonResponse, Tweet.class);
     }
 
 }

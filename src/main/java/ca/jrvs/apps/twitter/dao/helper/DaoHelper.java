@@ -24,6 +24,7 @@ public class DaoHelper {
 
     private static ObjectMapper mapper;
 
+    // class not instantiable
     private DaoHelper() {}
 
     /**
@@ -88,6 +89,10 @@ public class DaoHelper {
         return mapper;
     }
 
+    /**
+     * Signs an http request
+     * @param request http request
+     */
     public static void signRequest(HttpRequestBase request) {
         OAuthConsumer consumer =
                 new CommonsHttpOAuthConsumer(Keys.CONSUMER_KEY, Keys.CONSUMER_SECRET);
@@ -105,6 +110,11 @@ public class DaoHelper {
         }
     }
 
+    /**
+     * checks http status
+     * @param response server response
+     * @return true if status was OK
+     */
     public static boolean checkStatus(HttpResponse response) {
         int status = response.getStatusLine().getStatusCode();
         if(status != DaoHelper.HTTP_OK) {
