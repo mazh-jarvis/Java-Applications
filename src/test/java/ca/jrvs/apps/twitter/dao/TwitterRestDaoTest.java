@@ -38,7 +38,6 @@ public class TwitterRestDaoTest {
     public void getTweetTest() {
         try {
             Tweet tweet = dao.findById("1146435093491277824");
-            // System.out.println(tweet);
             assertNotNull(tweet);
         } catch (URISyntaxException e) {
             e.printStackTrace();
