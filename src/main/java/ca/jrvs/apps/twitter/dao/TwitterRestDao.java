@@ -4,6 +4,8 @@ import ca.jrvs.apps.twitter.dao.helper.DaoHelper;
 import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 import ca.jrvs.apps.twitter.dao.helper.URIBuilder;
 import ca.jrvs.apps.twitter.dto.Tweet;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import jdk.internal.util.xml.impl.Input;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -13,11 +15,11 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
 public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper {
-    public static final String BASE_URI = "https://api.twitter.com/1.1/statuses";
 
     @Override
     public HttpResponse httpPost(URI uri) {
@@ -43,30 +45,30 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
 
     @Override
     public Tweet findById(String s) throws URISyntaxException, IOException {
-        if(DaoHelper.validateIDStr(s) == false) {
-            System.err.println("# ERROR: Invalid ID format!");
+        if(DaoHelper.validateIDStr(s) == false)
             return null;
-        }
         // build the request URI
-        URI uri = new URI(new URIBuilder().base(BASE_URI)
+        URI uri = new URI(new URIBuilder().base(DaoHelper.BASE_URI)
                         .endpoint("show").param("id", s).toString());
         HttpResponse response = httpGet(uri);
-        int status = response.getStatusLine().getStatusCode();
-        if(status != 200) {
-            System.err.println("Server responded with error " + status);
+        if(DaoHelper.checkStatus(response) == false)
             return null;
-        }
         // json stream
-        InputStream jsonIn = response.getEntity().getContent();
-        return DaoHelper.toObjectFromJson(jsonIn, Tweet.class);
+        InputStream jsonResponse = response.getEntity().getContent();
+        return DaoHelper.toObjectFromJson(jsonResponse, Tweet.class);
     }
 
     @Override
-    public Tweet save(Tweet entity) throws URISyntaxException {
-        URI uri = new URI(new URIBuilder().base(BASE_URI)
+    public Tweet save(Tweet entity) throws URISyntaxException, IOException {
+        if(entity == null) return null;
+        URI uri = new URI(new URIBuilder().base(DaoHelper.BASE_URI)
                 .endpoint("update").toString());
-
-        return null;
+        String json = DaoHelper.toJson(entity, true, false);
+        HttpResponse response = httpPost(uri, new StringEntity(json));
+        if (DaoHelper.checkStatus(response) == false )
+            return null;
+        InputStream jsonResponse = response.getEntity().getContent();
+        return DaoHelper.toObjectFromJson(jsonResponse, Tweet.class);
     }
 
     @Override

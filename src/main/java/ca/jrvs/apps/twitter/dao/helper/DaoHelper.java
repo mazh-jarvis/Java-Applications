@@ -9,6 +9,7 @@ import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import oauth.signpost.exception.OAuthCommunicationException;
 import oauth.signpost.exception.OAuthExpectationFailedException;
 import oauth.signpost.exception.OAuthMessageSignerException;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpRequestBase;
 
 import java.io.IOException;
@@ -16,6 +17,9 @@ import java.io.InputStream;
 import java.util.stream.Stream;
 
 public class DaoHelper {
+
+    public static final int HTTP_OK = 200;
+    public static final String BASE_URI = "https://api.twitter.com/1.1/statuses";
 
     private static ObjectMapper mapper;
 
@@ -28,7 +32,10 @@ public class DaoHelper {
      */
     public static boolean validateIDStr(String id) {
         Stream<Character> charStream = id.chars().mapToObj(c -> (char)c);
-        return charStream.allMatch(Character::isDigit);
+        boolean result = charStream.allMatch(Character::isDigit);
+        if(!result)
+            System.err.println("# ERROR: Invalid ID format!");
+        return result;
     }
 
     /**
@@ -95,5 +102,14 @@ public class DaoHelper {
         } catch (OAuthCommunicationException e) {
             e.printStackTrace();
         }
+    }
+
+    public static boolean checkStatus(HttpResponse response) {
+        int status = response.getStatusLine().getStatusCode();
+        if(status != DaoHelper.HTTP_OK) {
+            System.err.println("Server responded with error " + status);
+            return false;
+        }
+        return true;
     }
 }
