@@ -1,6 +1,6 @@
 package ca.jrvs.apps.twitter.dao;
 
-import ca.jrvs.apps.twitter.dao.helper.DaoHelper;
+import ca.jrvs.apps.twitter.dao.helper.DaoUtil;
 import ca.jrvs.apps.twitter.dto.Tweet;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -24,11 +24,11 @@ public class TwitterRestDaoTest {
      */
     @Test
     public void idTest1(){
-        assertTrue(DaoHelper.validateIDStr("59175"));
+        assertTrue(DaoUtil.validateIDStr("59175"));
     }
     @Test
     public void idTest2(){
-        assertFalse(DaoHelper.validateIDStr("30d95"));
+        assertFalse(DaoUtil.validateIDStr("30d95"));
     }
 
     /**
@@ -37,7 +37,8 @@ public class TwitterRestDaoTest {
     @Test
     public void getTweetTest() {
         try {
-            Tweet tweet = dao.findById("1146435093491277824");
+            Tweet tweet = dao.findById("1147333696661413895");
+            System.out.println(tweet);
             assertNotNull(tweet);
         } catch (URISyntaxException e) {
             e.printStackTrace();
@@ -64,7 +65,7 @@ public class TwitterRestDaoTest {
         Tweet savedTweet, result = null;
         try {
             savedTweet = dao.create(new Tweet("Tweet to be deleted."));
-            String idStr = savedTweet.getId_str();
+            String idStr = savedTweet.getIdStr();
             result = dao.deleteById(idStr);
             assertNotNull(result);
         } catch (URISyntaxException e) {

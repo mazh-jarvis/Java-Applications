@@ -26,7 +26,6 @@ public class TwitterServiceImp implements TwitterService {
 
     @Override
     public void showTweet(String id, String[] fields) throws IOException, URISyntaxException {
-        // TODO: implement(using reflection, or jsonToMap()) when FIELDS are given in the cli
         Tweet tweet = getDao().findById(id);
         if(tweet == null) {
             System.err.println("ERROR: no tweet with such id");

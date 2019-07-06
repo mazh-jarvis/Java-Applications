@@ -30,12 +30,12 @@ JSON document.
 `TwitterCLI show <tweet_id> [field1, field2]"`
 
 where:
- * `tweet_id` is the tweet id, same as the `id_str` attribute
+ * `tweet_id` is the tweet id, same as the `idStr` attribute
  * `[field1, field2]` (Optional) comma-separated list of top-level fields from the tweet object (similar to the `SELECT` clause in SQL).
 
 ## Post
 ### Description
-Create a tweet with a geotag and output the created_at tweet object(simplified version)
+Create a tweet with a geotag and output the createdAt tweet object(simplified version)
 in JSON format.
 ### Usage
 `TwitterCLI post "<tweet_text>" "<latitude>:<longitude>"`

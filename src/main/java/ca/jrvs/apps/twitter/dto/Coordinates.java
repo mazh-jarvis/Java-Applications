@@ -1,20 +1,26 @@
 package ca.jrvs.apps.twitter.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Coordinates {
-    private Double latitude, longitude;
+    private static final int LONG_INDEX = 0;
+    private static final int LAT_INDEX = 1;
+    @JsonProperty("type")
     private String type;
+    @JsonProperty("coordinates")
+    private List<Double> coordinates;
 
     public Coordinates(Double latitude, Double longitude) {
-        this.latitude = latitude;
-        this.longitude = longitude;
+        coordinates = new ArrayList<>();
+        coordinates.add(longitude);
+        coordinates.add(latitude);
     }
 
     // null coordinates for no coordinates
     public Coordinates() {}
-
-    public double getLatitude() {
-        return latitude;
-    }
 
     public String getType() {
         return type;
@@ -25,19 +31,22 @@ public class Coordinates {
     }
 
     public String getLongitudeStr() {
-        return this.longitude == null? null : Double.toString(this.longitude);
+        if (coordinates == null) return null;
+        return coordinates.get(LONG_INDEX).toString();
     }
+
 
     public String getLatitudeStr() {
-        return this.latitude == null? null : Double.toString(this.latitude);
+        if (coordinates == null) return null;
+        return coordinates.get(LAT_INDEX).toString();
     }
 
-
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
+    @Override
+    public String toString() {
+        return "Coordinates{" +
+                "type='" + type + '\'' +
+                ", coordinates=" + coordinates +
+                '}';
     }
 }
 

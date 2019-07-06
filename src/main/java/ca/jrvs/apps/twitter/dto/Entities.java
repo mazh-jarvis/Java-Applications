@@ -13,4 +13,12 @@ public class Entities {
     public List<UserMention> getUser_mentions() {
         return user_mentions;
     }
+
+    @Override
+    public String toString() {
+        return "Entities{" +
+                "hashtags=" + hashtags +
+                ", user_mentions=" + user_mentions +
+                '}';
+    }
 }

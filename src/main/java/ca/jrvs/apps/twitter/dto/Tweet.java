@@ -1,53 +1,37 @@
 package ca.jrvs.apps.twitter.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/*
-* Description: Create a tweet with a geotag and
-output the created_at tweet object(simplifeid version)
-in JSON format.
-Arguments:
-tweet_text - tweet_text cannot exceed 140
-UTF-8 encoded characters.
-latitude:longitude - Geo location.
- */
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Tweet {
     public static final String DATE_FORMAT = "EEE MMM dd HH:mm:ss Z yyyy";
     @JsonProperty("created_at")
-    private Date created_at;
+    private Date createdAt;
+    @JsonProperty("id")
     private long id;
-    private String id_str;
+    @JsonProperty("id_str")
+    private String idStr;
+    @JsonProperty("text")
     private String text;
+    @JsonProperty("entities")
     private Entities entities;
-    @JsonProperty("lat")
+    /*@JsonProperty("lat")
     private double latitude;
     @JsonProperty("long")
-    private double longitude;
-    private int retweet_count, favorite_count;
-    private boolean favorited, retweeted;
+    private double longitude;*/
+    @JsonProperty("retweet_count")
+    private int retweetCount;
+    @JsonProperty("favorite_count")
+    private int favorite_count;
+    @JsonProperty("favorited")
+    private boolean favorited;
+    @JsonProperty("retweeted")
+    private boolean retweeted;
+    @JsonProperty("coordinates")
     private Coordinates coordinates;
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
 
     // Default constructor is required by the json parser
     public Tweet() {}
@@ -56,8 +40,8 @@ public class Tweet {
         this.text = text;
     }
 
-    public void setCreated_at(String created_at) throws ParseException {
-        this.created_at = new SimpleDateFormat(DATE_FORMAT).parse(created_at);
+    public void setCreatedAt(String createdAt) throws ParseException {
+        this.createdAt = new SimpleDateFormat(DATE_FORMAT).parse(createdAt);
     }
 
     public void setEntities(Entities entities) {
@@ -68,15 +52,19 @@ public class Tweet {
         this.coordinates = coordinates;
     }
 
-    public String getCreated_at() {
-        return created_at.toString();
+    public String getCreatedAt() {
+        return createdAt.toString();
     }
 
     public Entities getEntities() {
         return entities;
     }
 
-    public Coordinates getCoordinates() {
+    public String getCoordinates() {
+        return coordinates.toString();
+    }
+
+    public Coordinates getCoordinatesObj() {
         return coordinates;
     }
 
@@ -88,12 +76,12 @@ public class Tweet {
         this.id = id;
     }
 
-    public String getId_str() {
-        return id_str;
+    public String getIdStr() {
+        return idStr;
     }
 
-    public void setId_str(String id_str) {
-        this.id_str = id_str;
+    public void setIdStr(String idStr) {
+        this.idStr = idStr;
     }
 
     public String getText() {
@@ -104,12 +92,12 @@ public class Tweet {
         this.text = text;
     }
 
-    public int getRetweet_count() {
-        return retweet_count;
+    public int getRetweetCount() {
+        return retweetCount;
     }
 
-    public void setRetweet_count(int retweet_count) {
-        this.retweet_count = retweet_count;
+    public void setRetweetCount(int retweetCount) {
+        this.retweetCount = retweetCount;
     }
 
     public int getFavorite_count() {
@@ -139,13 +127,13 @@ public class Tweet {
     @Override
     public String toString() {
         return "Tweet{" +
-                "created_at=" + created_at +
+                "createdAt=" + createdAt +
                 ", id=" + id +
-                ", id_str='" + id_str + '\'' +
+                ", idStr='" + idStr + '\'' +
                 ", text='" + text + '\'' +
                 ", entities=" + entities +
                 ", coordinates=" + coordinates +
-                ", retweet_count=" + retweet_count +
+                ", retweetCount=" + retweetCount +
                 ", favorite_count=" + favorite_count +
                 ", favorited=" + favorited +
                 ", retweeted=" + retweeted +

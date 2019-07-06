@@ -1,6 +1,5 @@
 package ca.jrvs.apps.twitter.dao.helper;
 
-import ca.jrvs.apps.twitter.dto.Tweet;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,7 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.stream.Stream;
 
-public class DaoHelper {
+public class DaoUtil {
 
     public static final int HTTP_OK = 200;
     public static final String BASE_URI = "https://api.twitter.com/1.1/statuses";
@@ -31,7 +30,7 @@ public class DaoHelper {
     private static ObjectMapper mapper;
 
     // class not instantiable
-    private DaoHelper() {}
+    private DaoUtil() {}
 
     /**
      * Validate ID string (challenge)
@@ -123,7 +122,7 @@ public class DaoHelper {
      */
     public static boolean checkStatus(HttpResponse response) {
         int status = response.getStatusLine().getStatusCode();
-        if(status != DaoHelper.HTTP_OK) {
+        if(status != DaoUtil.HTTP_OK) {
             System.err.println("Server responded with error " + status);
             return false;
         }

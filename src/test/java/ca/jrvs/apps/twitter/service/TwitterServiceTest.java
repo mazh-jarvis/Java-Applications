@@ -28,9 +28,9 @@ public class TwitterServiceTest {
 
     @Test
     public void showTweet() {
-        String[] fields = {"id", "created_at", "text", "coordinates"};
+        String[] fields = {"id", "createdAt", "text", "coordinates"};
         try {
-            service.showTweet("1146800738976317440", fields);
+            service.showTweet("1147220067316359168", fields);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (URISyntaxException e) {
