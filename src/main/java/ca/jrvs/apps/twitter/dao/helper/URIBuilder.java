@@ -1,6 +1,7 @@
 package ca.jrvs.apps.twitter.dao.helper;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
@@ -33,9 +34,14 @@ public class URIBuilder {
         return this;
     }
 
-    public URIBuilder param(String key, String value) throws UnsupportedEncodingException {
+    public <T> URIBuilder param(String key, T value) throws UnsupportedEncodingException {
+//        Type type = typeof(T);
         String uriKey = URLEncoder.encode(key, StandardCharsets.UTF_8.toString());
-        String uriValue = URLEncoder.encode(value, StandardCharsets.UTF_8.toString());
+        T uriValue;
+        if(value instanceof String)
+            uriValue = (T) URLEncoder.encode(value.toString(), StandardCharsets.UTF_8.toString());
+        else
+            uriValue = value;
         if(this.multiParam)
             this.URIString.append("&");
         this.URIString.append(uriKey + "=" + uriValue);

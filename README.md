@@ -35,7 +35,7 @@ where:
 
 ## Post
 ### Description
-Create a tweet with a geotag and output the created tweet object(simplified version)
+Create a tweet with a geotag and output the created_at tweet object(simplified version)
 in JSON format.
 ### Usage
 `TwitterCLI post "<tweet_text>" "<latitude>:<longitude>"`

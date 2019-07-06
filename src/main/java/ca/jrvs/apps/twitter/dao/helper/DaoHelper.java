@@ -21,10 +21,12 @@ public class DaoHelper {
     public static final int HTTP_OK = 200;
     public static final String BASE_URI = "https://api.twitter.com/1.1/statuses";
     public static final String ENDPOINT_GET = "show";
-    public static final String ENDPOINT_UPDATE = "status";
+    public static final String ENDPOINT_UPDATE = "update";
     public static final String ROUTE_DELETE = "destroy";
     public static final String PARAM_GET = "id";
     public static final String PARAM_UPDATE = "status";
+    public static final String PARAM_LAT = "lat";
+    public static final String PARAM_LONG = "long";
 
     private static ObjectMapper mapper;
 
