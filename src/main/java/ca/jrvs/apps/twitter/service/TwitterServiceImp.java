@@ -1,5 +1,6 @@
 package ca.jrvs.apps.twitter.service;
 
+import ca.jrvs.apps.twitter.TwitterUtil;
 import ca.jrvs.apps.twitter.dao.TwitterRestDao;
 import ca.jrvs.apps.twitter.dto.Coordinates;
 import ca.jrvs.apps.twitter.dto.Tweet;
@@ -7,10 +8,12 @@ import ca.jrvs.apps.twitter.dto.Tweet;
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.io.IOException;
+import java.io.InvalidObjectException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URISyntaxException;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 public class TwitterServiceImp implements TwitterService {
@@ -21,16 +24,18 @@ public class TwitterServiceImp implements TwitterService {
     public void postTweet(String text, Double latitude, Double longitude) throws IOException, URISyntaxException {
         Tweet tweet = new Tweet(text);
         tweet.setCoordinates(new Coordinates(latitude, longitude));
-        getDao().create(tweet);
+        Tweet result = getDao().create(tweet);
+        if (result == null)
+            throw new NullPointerException();
+        else if (result.getText().isEmpty())
+            throw new InvalidObjectException(TwitterUtil.INVALID_EX_MSG);
     }
 
     @Override
     public void showTweet(String id, String[] fields) throws IOException, URISyntaxException {
         Tweet tweet = getDao().findById(id);
-        if(tweet == null) {
-            System.err.println("ERROR: no tweet with such id");
-            return;
-        }
+        if(tweet == null)
+            throw new NoSuchElementException();
         if (fields == null)
             return;
         Stream<String> fieldStream = Arrays.asList(fields).stream();
@@ -38,7 +43,8 @@ public class TwitterServiceImp implements TwitterService {
             try {
                 Field refField = tweet.getClass().getDeclaredField(field);
                 PropertyDescriptor descriptor = new PropertyDescriptor(refField.getName(), tweet.getClass());
-                System.out.println(descriptor.getDisplayName() + ": " + descriptor.getReadMethod().invoke(tweet, null));
+                System.out.println(descriptor.getDisplayName() + ": " +
+                        descriptor.getReadMethod().invoke(tweet));
             } catch (NoSuchFieldException e) {
                 e.printStackTrace();
             } catch (IntrospectionException e) {
@@ -54,7 +60,9 @@ public class TwitterServiceImp implements TwitterService {
     @Override
     public void deleteTweets(String[] ids) throws IOException, URISyntaxException {
         for (String id : ids) {
-            getDao().deleteById(id);
+            Tweet tweet = getDao().deleteById(id);
+            if (tweet != null && tweet.getText().length() == 0)
+                throw new InvalidObjectException(TwitterUtil.INVALID_EX_MSG);
         }
     }
 

@@ -22,14 +22,6 @@ public class Coordinates {
     // null coordinates for no coordinates
     public Coordinates() {}
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getLongitudeStr() {
         if (coordinates == null) return null;
         return coordinates.get(LONG_INDEX).toString();

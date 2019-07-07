@@ -18,10 +18,6 @@ public class Tweet {
     private String text;
     @JsonProperty("entities")
     private Entities entities;
-    /*@JsonProperty("lat")
-    private double latitude;
-    @JsonProperty("long")
-    private double longitude;*/
     @JsonProperty("retweet_count")
     private int retweetCount;
     @JsonProperty("favorite_count")
@@ -34,7 +30,8 @@ public class Tweet {
     private Coordinates coordinates;
 
     // Default constructor is required by the json parser
-    public Tweet() {}
+    public Tweet() {
+    }
 
     public Tweet(String text) {
         this.text = text;
@@ -60,11 +57,7 @@ public class Tweet {
         return entities;
     }
 
-    public String getCoordinates() {
-        return coordinates.toString();
-    }
-
-    public Coordinates getCoordinatesObj() {
+    public Coordinates getCoordinates() {
         return coordinates;
     }
 

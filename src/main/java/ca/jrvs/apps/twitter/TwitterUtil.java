@@ -1,5 +1,6 @@
-package ca.jrvs.apps.twitter.dao.helper;
+package ca.jrvs.apps.twitter;
 
+import ca.jrvs.apps.twitter.dao.helper.Keys;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,7 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.stream.Stream;
 
-public class DaoUtil {
+public class TwitterUtil {
 
     public static final int HTTP_OK = 200;
     public static final String BASE_URI = "https://api.twitter.com/1.1/statuses";
@@ -26,11 +27,14 @@ public class DaoUtil {
     public static final String PARAM_UPDATE = "status";
     public static final String PARAM_LAT = "lat";
     public static final String PARAM_LONG = "long";
+    // service constants
+    public static final String INVALID_EX_MSG = "Received a tweet with no content";
 
+    // Json object mapper singleton
     private static ObjectMapper mapper;
 
     // class not instantiable
-    private DaoUtil() {}
+    private TwitterUtil() {}
 
     /**
      * Validate ID string (challenge)
@@ -122,7 +126,7 @@ public class DaoUtil {
      */
     public static boolean checkStatus(HttpResponse response) {
         int status = response.getStatusLine().getStatusCode();
-        if(status != DaoUtil.HTTP_OK) {
+        if(status != TwitterUtil.HTTP_OK) {
             System.err.println("Server responded with error " + status);
             return false;
         }
