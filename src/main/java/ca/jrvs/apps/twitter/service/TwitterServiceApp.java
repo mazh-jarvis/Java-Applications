@@ -25,7 +25,7 @@ public class TwitterServiceApp {
         switch (cmd) {
             case "post":
                 String text = args[1];
-                parser = new Scanner(args[2]);
+                parser = new Scanner(args[2]).useDelimiter(",");
                 Double longitude = parser.nextDouble();
                 Double latitude = parser.nextDouble();
                 try {

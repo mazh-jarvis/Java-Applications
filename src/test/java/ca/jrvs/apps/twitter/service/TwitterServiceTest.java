@@ -1,6 +1,7 @@
 package ca.jrvs.apps.twitter.service;
 
 import ca.jrvs.apps.twitter.TestUtil;
+import ca.jrvs.apps.twitter.dao.TwitterRestDao;
 import ca.jrvs.apps.twitter.dto.Tweet;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
@@ -19,7 +20,7 @@ public class TwitterServiceTest {
 
     @BeforeClass
     public static void setup() {
-        service = new TwitterServiceImp();
+        service = new TwitterServiceImp(new TwitterRestDao());
     }
 
     @Test

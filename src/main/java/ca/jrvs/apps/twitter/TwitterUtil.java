@@ -31,6 +31,8 @@ public class TwitterUtil {
     public static final String PARAM_LONG = "long";
     // service constants
     public static final String INVALID_EX_MSG = "Received a tweet with no content";
+    public static final double MAX_LAT = 90;
+    public static final double MAX_LONG = 180;
 
     public static final String SERVICE_USAGE_TEMP = "Usage: java -jar java_apps.jar";
     public static final String SERVICE_APP_USAGE = SERVICE_USAGE_TEMP + " <command> <args>";

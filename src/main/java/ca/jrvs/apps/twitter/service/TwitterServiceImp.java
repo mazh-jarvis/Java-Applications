@@ -4,6 +4,7 @@ import ca.jrvs.apps.twitter.TwitterUtil;
 import ca.jrvs.apps.twitter.dao.CrdRepository;
 import ca.jrvs.apps.twitter.dto.Coordinates;
 import ca.jrvs.apps.twitter.dto.Tweet;
+import com.sun.javaws.exceptions.InvalidArgumentException;
 
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
@@ -30,6 +31,7 @@ public class TwitterServiceImp implements TwitterService {
 
     @Override
     public Tweet postTweet(String text, Double latitude, Double longitude) throws IOException, URISyntaxException {
+        checkCoordinates(latitude, longitude);
         Tweet tweet = new Tweet(text);
         tweet.setCoordinates(new Coordinates(latitude, longitude));
         Tweet result = (Tweet) dao.create(tweet);
@@ -40,9 +42,14 @@ public class TwitterServiceImp implements TwitterService {
         return result;
     }
 
+    private void checkCoordinates(Double latitude, Double longitude) {
+        if (Math.abs(latitude) >  TwitterUtil.MAX_LAT
+                || Math.abs(longitude) > TwitterUtil.MAX_LONG)
+            throw new InvalidParameterException("Invalid coordinates");
+    }
+
     @Override
     public Tweet showTweet(String id, String[] fields) throws IOException, URISyntaxException {
-
         Tweet tweet = (Tweet) dao.findById(id);
         if(tweet == null)
             throw new NoSuchElementException();
@@ -83,10 +90,4 @@ public class TwitterServiceImp implements TwitterService {
         }
         return tweets;
     }
-/*
-    private static TwitterRestDao dao {
-        if(dao == null)
-            dao = new TwitterRestDao();
-        return dao;
-    }*/
 }
