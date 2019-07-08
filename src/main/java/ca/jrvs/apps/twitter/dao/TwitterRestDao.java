@@ -9,6 +9,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.cookie.params.CookieSpecPNames;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
@@ -18,12 +19,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 
 public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper {
 
     @Override
     public HttpResponse httpPost(URI uri) throws IOException {
         HttpPost request = new HttpPost(uri.toString());
+        TwitterUtil.setRequestHeaders(request);
         TwitterUtil.signRequest(request);
         HttpClient client = new DefaultHttpClient();
         return client.execute(request);
@@ -32,6 +35,7 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
     @Override
     public HttpResponse httpPost(URI uri, StringEntity stringEntity) throws IOException {
         HttpPost request = new HttpPost(uri.toString());
+        TwitterUtil.setRequestHeaders(request);
         TwitterUtil.signRequest(request);
         request.setEntity(stringEntity);
         HttpClient client = new DefaultHttpClient();
@@ -41,6 +45,7 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
     @Override
     public HttpResponse httpGet(URI uri) throws IOException {
         HttpGet request = new HttpGet(uri.toString());
+        TwitterUtil.setRequestHeaders(request);
         TwitterUtil.signRequest(request);
         HttpClient client = new DefaultHttpClient();
         return client.execute(request);

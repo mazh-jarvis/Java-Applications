@@ -12,7 +12,10 @@ import java.io.InvalidObjectException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URISyntaxException;
+import java.security.InvalidParameterException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
@@ -21,7 +24,7 @@ public class TwitterServiceImp implements TwitterService {
     private static TwitterRestDao dao;
 
     @Override
-    public void postTweet(String text, Double latitude, Double longitude) throws IOException, URISyntaxException {
+    public Tweet postTweet(String text, Double latitude, Double longitude) throws IOException, URISyntaxException {
         Tweet tweet = new Tweet(text);
         tweet.setCoordinates(new Coordinates(latitude, longitude));
         Tweet result = getDao().create(tweet);
@@ -29,15 +32,16 @@ public class TwitterServiceImp implements TwitterService {
             throw new NullPointerException();
         else if (result.getText().isEmpty())
             throw new InvalidObjectException(TwitterUtil.INVALID_EX_MSG);
+        return result;
     }
 
     @Override
-    public void showTweet(String id, String[] fields) throws IOException, URISyntaxException {
+    public Tweet showTweet(String id, String[] fields) throws IOException, URISyntaxException {
         Tweet tweet = getDao().findById(id);
         if(tweet == null)
             throw new NoSuchElementException();
         if (fields == null)
-            return;
+            throw new InvalidParameterException();
         Stream<String> fieldStream = Arrays.asList(fields).stream();
         fieldStream.forEach(field -> {
             try {
@@ -55,15 +59,19 @@ public class TwitterServiceImp implements TwitterService {
                 e.printStackTrace();
             }
         });
+        return tweet;
     }
 
     @Override
-    public void deleteTweets(String[] ids) throws IOException, URISyntaxException {
+    public List<Tweet> deleteTweets(String[] ids) throws IOException, URISyntaxException {
+        List<Tweet> tweets = new ArrayList<>();
         for (String id : ids) {
             Tweet tweet = getDao().deleteById(id);
             if (tweet != null && tweet.getText().length() == 0)
                 throw new InvalidObjectException(TwitterUtil.INVALID_EX_MSG);
+            tweets.add(tweet);
         }
+        return tweets;
     }
 
     private static TwitterRestDao getDao() {

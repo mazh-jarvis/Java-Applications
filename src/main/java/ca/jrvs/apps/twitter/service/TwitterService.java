@@ -1,7 +1,10 @@
 package ca.jrvs.apps.twitter.service;
 
+import ca.jrvs.apps.twitter.dto.Tweet;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.List;
 
 public interface TwitterService {
     /**
@@ -12,7 +15,7 @@ public interface TwitterService {
      * @throws IOException
      * @throws URISyntaxException
      */
-    void postTweet(String text, Double latitude, Double longitude) throws IOException, URISyntaxException;
+    Tweet postTweet(String text, Double latitude, Double longitude) throws IOException, URISyntaxException;
 
     /**
      * Show specific data from a tweet (by reflection)
@@ -21,7 +24,7 @@ public interface TwitterService {
      * @throws IOException
      * @throws URISyntaxException
      */
-    void showTweet(String id, String[] fields) throws IOException, URISyntaxException;
+    Tweet showTweet(String id, String[] fields) throws IOException, URISyntaxException;
 
     /**
      * Delete tweets
@@ -29,5 +32,5 @@ public interface TwitterService {
      * @throws IOException
      * @throws URISyntaxException
      */
-    void deleteTweets(String[] ids) throws IOException, URISyntaxException;
+    List<Tweet> deleteTweets(String[] ids) throws IOException, URISyntaxException;
 }

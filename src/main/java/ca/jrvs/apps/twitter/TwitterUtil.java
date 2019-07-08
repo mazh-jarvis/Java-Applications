@@ -11,9 +11,11 @@ import oauth.signpost.exception.OAuthExpectationFailedException;
 import oauth.signpost.exception.OAuthMessageSignerException;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.cookie.params.CookieSpecPNames;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class TwitterUtil {
@@ -29,6 +31,9 @@ public class TwitterUtil {
     public static final String PARAM_LONG = "long";
     // service constants
     public static final String INVALID_EX_MSG = "Received a tweet with no content";
+
+    public static final String SERVICE_APP_USAGE = "Usage: java -jar ";
+    public static final String COOKIE_DATE_FORMAT = "EEE, d MMM yyyy HH:mm:ss z";
 
     // Json object mapper singleton
     private static ObjectMapper mapper;
@@ -131,5 +136,9 @@ public class TwitterUtil {
             return false;
         }
         return true;
+    }
+
+    public static void setRequestHeaders(HttpRequestBase request) {
+        request.getParams().setParameter(CookieSpecPNames.DATE_PATTERNS, Arrays.asList(COOKIE_DATE_FORMAT));
     }
 }
