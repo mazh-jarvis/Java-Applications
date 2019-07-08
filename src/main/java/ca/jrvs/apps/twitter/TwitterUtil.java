@@ -32,9 +32,16 @@ public class TwitterUtil {
     // service constants
     public static final String INVALID_EX_MSG = "Received a tweet with no content";
 
-    public static final String SERVICE_APP_USAGE = "Usage: java -jar ";
-    public static final String COOKIE_DATE_FORMAT = "EEE, d MMM yyyy HH:mm:ss z";
+    public static final String SERVICE_USAGE_TEMP = "Usage: java -jar java_apps.jar";
+    public static final String SERVICE_APP_USAGE = SERVICE_USAGE_TEMP + " <command> <args>";
+    public static final String SERVICE_POST_USAGE = SERVICE_USAGE_TEMP + " post <status-text>";
+    public static final String SERVICE_SHOW_USAGE = SERVICE_USAGE_TEMP + " show <id> <field..>";
+    public static final String SERVICE_DEL_USAGE = SERVICE_USAGE_TEMP + " delete <id..>";
 
+    public static final String COOKIE_DATE_FORMAT = "EEE, d MMM yyyy HH:mm:ss z";
+    public static final String POST_SUCCESS_MSG_FORMAT = "# Success: a new tweet was posted (id: %s)\n";
+
+    public static final int CMD_ARG_INDEX = 2;
     // Json object mapper singleton
     private static ObjectMapper mapper;
 

@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: ca.jrvs.apps.twitter.service.
+Main-Class: ca.jrvs.apps.twitter.service.TwitterServiceApp
+

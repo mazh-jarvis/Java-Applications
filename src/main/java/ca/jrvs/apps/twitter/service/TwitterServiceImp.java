@@ -1,7 +1,7 @@
 package ca.jrvs.apps.twitter.service;
 
 import ca.jrvs.apps.twitter.TwitterUtil;
-import ca.jrvs.apps.twitter.dao.TwitterRestDao;
+import ca.jrvs.apps.twitter.dao.CrdRepository;
 import ca.jrvs.apps.twitter.dto.Coordinates;
 import ca.jrvs.apps.twitter.dto.Tweet;
 
@@ -21,13 +21,18 @@ import java.util.stream.Stream;
 
 public class TwitterServiceImp implements TwitterService {
 
-    private static TwitterRestDao dao;
+//    private static TwitterRestDao dao;
+    private CrdRepository dao;
+
+    public TwitterServiceImp(CrdRepository dao) {
+        this.dao = dao;
+    }
 
     @Override
     public Tweet postTweet(String text, Double latitude, Double longitude) throws IOException, URISyntaxException {
         Tweet tweet = new Tweet(text);
         tweet.setCoordinates(new Coordinates(latitude, longitude));
-        Tweet result = getDao().create(tweet);
+        Tweet result = (Tweet) dao.create(tweet);
         if (result == null)
             throw new NullPointerException();
         else if (result.getText().isEmpty())
@@ -37,7 +42,8 @@ public class TwitterServiceImp implements TwitterService {
 
     @Override
     public Tweet showTweet(String id, String[] fields) throws IOException, URISyntaxException {
-        Tweet tweet = getDao().findById(id);
+
+        Tweet tweet = (Tweet) dao.findById(id);
         if(tweet == null)
             throw new NoSuchElementException();
         if (fields == null)
@@ -47,8 +53,10 @@ public class TwitterServiceImp implements TwitterService {
             try {
                 Field refField = tweet.getClass().getDeclaredField(field);
                 PropertyDescriptor descriptor = new PropertyDescriptor(refField.getName(), tweet.getClass());
-                System.out.println(descriptor.getDisplayName() + ": " +
-                        descriptor.getReadMethod().invoke(tweet));
+                long resultId =  (long) descriptor
+                        .getReadMethod()
+                        .invoke(tweet);
+                System.out.println( descriptor.getDisplayName() + ": " + resultId );
             } catch (NoSuchFieldException e) {
                 e.printStackTrace();
             } catch (IntrospectionException e) {
@@ -56,6 +64,8 @@ public class TwitterServiceImp implements TwitterService {
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (NullPointerException e) {
                 e.printStackTrace();
             }
         });
@@ -66,17 +76,17 @@ public class TwitterServiceImp implements TwitterService {
     public List<Tweet> deleteTweets(String[] ids) throws IOException, URISyntaxException {
         List<Tweet> tweets = new ArrayList<>();
         for (String id : ids) {
-            Tweet tweet = getDao().deleteById(id);
+            Tweet tweet = (Tweet) dao.deleteById(id);
             if (tweet != null && tweet.getText().length() == 0)
                 throw new InvalidObjectException(TwitterUtil.INVALID_EX_MSG);
             tweets.add(tweet);
         }
         return tweets;
     }
-
-    private static TwitterRestDao getDao() {
+/*
+    private static TwitterRestDao dao {
         if(dao == null)
             dao = new TwitterRestDao();
         return dao;
-    }
+    }*/
 }
