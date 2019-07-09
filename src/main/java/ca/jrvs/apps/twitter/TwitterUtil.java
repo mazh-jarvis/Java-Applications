@@ -15,6 +15,7 @@ import org.apache.http.cookie.params.CookieSpecPNames;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.InvalidParameterException;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
@@ -44,11 +45,26 @@ public class TwitterUtil {
     public static final String POST_SUCCESS_MSG_FORMAT = "# Success: a new tweet was posted (id: %s)\n";
 
     public static final int CMD_ARG_INDEX = 2;
+    private static final int MAX_TWEET_LEN = 150;
     // Json object mapper singleton
     private static ObjectMapper mapper;
 
     // class not instantiable
     private TwitterUtil() {}
+
+    /**
+     * Validate post tweet
+     * @param text tweet text
+     * @param longitude
+     * @param latitude
+     */
+    public static void validatePostTweet(String text, Double longitude, Double latitude) {
+        if (text.length() > MAX_TWEET_LEN)
+            throw new InvalidParameterException("Maximum tweet length is 150 characters");
+        if (Math.abs(latitude) >  TwitterUtil.MAX_LAT
+                || Math.abs(longitude) > TwitterUtil.MAX_LONG)
+            throw new InvalidParameterException("Invalid coordinates");
+    }
 
     /**
      * Validate ID string (challenge)

@@ -31,7 +31,7 @@ public class TwitterServiceImp implements TwitterService {
 
     @Override
     public Tweet postTweet(String text, Double latitude, Double longitude) throws IOException, URISyntaxException {
-        checkCoordinates(latitude, longitude);
+        TwitterUtil.validatePostTweet(text, longitude, latitude);
         Tweet tweet = new Tweet(text);
         tweet.setCoordinates(new Coordinates(latitude, longitude));
         Tweet result = (Tweet) dao.create(tweet);
@@ -40,12 +40,6 @@ public class TwitterServiceImp implements TwitterService {
         else if (result.getText().isEmpty())
             throw new InvalidObjectException(TwitterUtil.INVALID_EX_MSG);
         return result;
-    }
-
-    private void checkCoordinates(Double latitude, Double longitude) {
-        if (Math.abs(latitude) >  TwitterUtil.MAX_LAT
-                || Math.abs(longitude) > TwitterUtil.MAX_LONG)
-            throw new InvalidParameterException("Invalid coordinates");
     }
 
     @Override
