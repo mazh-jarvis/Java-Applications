@@ -1,11 +1,13 @@
 package ca.jrvs.apps.twitter.service;
 
 import ca.jrvs.apps.twitter.dto.Tweet;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
+@Service("service")
 public interface TwitterService {
     /**
      * Post a new tweet

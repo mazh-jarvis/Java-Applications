@@ -5,6 +5,12 @@ import ca.jrvs.apps.twitter.dao.CrdRepository;
 import ca.jrvs.apps.twitter.dto.Coordinates;
 import ca.jrvs.apps.twitter.dto.Tweet;
 import com.sun.javaws.exceptions.InvalidArgumentException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
@@ -20,11 +26,13 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
+@Service
 public class TwitterServiceImp implements TwitterService {
 
 //    private static TwitterRestDao dao;
     private CrdRepository dao;
 
+    @Autowired
     public TwitterServiceImp(CrdRepository dao) {
         this.dao = dao;
     }
