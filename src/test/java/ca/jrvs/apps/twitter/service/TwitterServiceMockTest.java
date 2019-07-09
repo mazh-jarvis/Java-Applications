@@ -10,6 +10,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -37,10 +38,18 @@ public class TwitterServiceMockTest {
             e.printStackTrace();
         }
     }
-
-    /*@Test
+    
+    @Test
     public void deleteTweet() {
-        Tweet mockTweet = new Tweet("Fake tweet");
+        Tweet mockTweet = new Tweet("Hello World");
+        try {
+            when(mockDao.deleteById(any())).thenReturn(mockTweet);
+            service.deleteTweets((String[]) Arrays.asList("342", "325").toArray());
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-    }*/
 }
