@@ -6,8 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-//@ComponentScan(value = "ca.jrvs.apps.twitter")
-@ComponentScan
+@ComponentScan(value = "ca.jrvs.apps.twitter")
 @Configuration
 public class TwitterCLIComponentScan {
 

@@ -23,5 +23,6 @@ public class TwitterCLISpringBoot implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        runner.run(args);
     }
 }
