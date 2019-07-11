@@ -4,6 +4,10 @@ Java Grep emulates the Unix grep command with limited functionality.
 It searches for any regex PATTERN found in the files in the DIRECTORY recursively, and outputs the lines matching the given PATTERN. 
 ## Usage
 `JavaGrepApp <pattern> <directory> <output>`
+## Design and Implementations
+This app was implemented by core Java API
+## Limitations
+The app's regular expression matching functionality depends on Java's `matches()` method in the String library.
 
 # Java JDBC App
 ## Introduction
