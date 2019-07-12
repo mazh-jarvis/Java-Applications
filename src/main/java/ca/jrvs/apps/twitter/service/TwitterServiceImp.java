@@ -4,12 +4,7 @@ import ca.jrvs.apps.twitter.TwitterUtil;
 import ca.jrvs.apps.twitter.dao.CrdRepository;
 import ca.jrvs.apps.twitter.dto.Coordinates;
 import ca.jrvs.apps.twitter.dto.Tweet;
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.beans.IntrospectionException;
@@ -19,7 +14,6 @@ import java.io.InvalidObjectException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URISyntaxException;
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +23,6 @@ import java.util.stream.Stream;
 @Service
 public class TwitterServiceImp implements TwitterService {
 
-//    private static TwitterRestDao dao;
     private CrdRepository dao;
 
     @Autowired
@@ -56,7 +49,7 @@ public class TwitterServiceImp implements TwitterService {
         if(tweet == null)
             throw new NoSuchElementException();
         if (fields == null)
-            throw new InvalidParameterException();
+            throw new IllegalArgumentException("Invalid fields argument");
         Stream<String> fieldStream = Arrays.asList(fields).stream();
         fieldStream.forEach(field -> {
             try {

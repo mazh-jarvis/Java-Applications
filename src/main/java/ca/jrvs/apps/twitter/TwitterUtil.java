@@ -15,7 +15,6 @@ import org.apache.http.cookie.params.CookieSpecPNames;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.InvalidParameterException;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
@@ -60,10 +59,10 @@ public class TwitterUtil {
      */
     public static void validatePostTweet(String text, Double longitude, Double latitude) {
         if (text.length() > MAX_TWEET_LEN)
-            throw new InvalidParameterException("Maximum tweet length is 150 characters");
+            throw new IllegalArgumentException("Maximum tweet length is 150 characters");
         if (Math.abs(latitude) >  TwitterUtil.MAX_LAT
                 || Math.abs(longitude) > TwitterUtil.MAX_LONG)
-            throw new InvalidParameterException("Invalid coordinates");
+            throw new IllegalArgumentException("Invalid coordinates");
     }
 
     /**
