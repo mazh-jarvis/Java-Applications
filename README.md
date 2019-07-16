@@ -31,6 +31,9 @@ This Java application interacts with the Twitter API and is capable of:
 
 <a name="impl-1"></a>
 ## Implementation (diagram)
+### Class Diagram
+
+### Entity Relationship Model
 ![](diagrams/TwitterAppArchitectureR2.png)
 
 ### General Usage
