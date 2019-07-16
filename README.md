@@ -3,20 +3,20 @@
 
 This project consists of 3 independent mini-projects.
 - [Java Twitter App](#java-twitter-app)
-    - [Introduction](##intro-1)
-    - [General Usage](##general-usage)
-    - [Implementation](##impl-1)
-    - [Get](##get)
-    - [Post](##post)
+    - [Introduction](#intro-1)
+    - [General Usage](#general-usage)
+    - [Implementation](#impl-1)
+    - [Get](#get)
+    - [Post](#post)
     - [Delete](#delete)
 - [Java JDBC App](#java-jdbc-app)
-    - [Introduction](##intro-2)
-    - [Implementation](##impl-2)
-    - [Issues/Improvements](##improv-2)
+    - [Introduction](#intro-2)
+    - [Implementation](#impl-2)
+    - [Issues/Improvements](#improv-2)
 - [Java Grep App](#java-grep-app)
-    - [Introduction](##intro-3)
-    - [Implementation](##impl-3)
-    - [Issues/Improvements](##improv-3)
+    - [Introduction](#intro-3)
+    - [Implementation](#impl-3)
+    - [Issues/Improvements](#improv-3)
 
 # Java Twitter App
 ## Introduction <a name="intro-1"></a>
