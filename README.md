@@ -31,7 +31,8 @@ This Java application interacts with the Twitter API and is capable of:
 
 <a name="impl-1"></a>
 ## Implementation (diagram)
-![](diagrams/TwitterAppArchitectureR2.svg)
+![](diagrams/TwitterAppArchitectureR2.png)
+
 ### General Usage
 `TwitterCLI <action> <args>` 
 
