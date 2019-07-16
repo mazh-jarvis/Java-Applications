@@ -19,7 +19,8 @@ This project consists of 3 independent mini-projects.
     - [Issues/Improvements](#improv-3)
 
 # Java Twitter App
-## Introduction <a name="intro-1"></a>
+<a name="intro-1"></a>
+## Introduction
 This Java application interacts with the Twitter API and is capable of:
  1. viewing tweets of anyone's public timeline
  2. posting tweets on the user's* timeline 
@@ -27,7 +28,8 @@ This Java application interacts with the Twitter API and is capable of:
  
  * The user is an authorized entity with a dedicated Twitter API token and a [developer app](https://developer.twitter.com/). 
 
-## Implementation (diagram) <a name="impl-1"></a>
+<a name="impl-1"></a>
+## Implementation (diagram)
 
 ### General Usage
 `TwitterCLI <action> <args>` 
@@ -68,27 +70,32 @@ Output deleted tweet id and print deleted tweet object.
 where `tweet_id` is a comma-separated list of tweets.
 
 # Java JDBC App
-## Introduction <a name="intro-2"></a>
+<a name="intro-2"></a>
+## Introduction
 This Java application interacts with a Postgres database server. 
 
 The current demo displays some data retrieved from 3 tables. 
 
-## Implementation (diagram) <a name="impl-2"></a>
+<a name="impl-2"></a>
+## Implementation (diagram)
 
-## Improvements <a name="improv-2"></a>
+<a name="improv-2"></a>
+## Improvements
 The app can be modified to display data based on the user's input
 
 # Java Grep App
-## Introduction <a name="intro-3"></a>
+<a name="intro-3"></a>
+## Introduction
 Java Grep emulates the Unix grep command with limited functionality.
 It searches for any regex PATTERN found in the files in the DIRECTORY recursively, and outputs the lines matching the given PATTERN. 
 
-## Implementation (diagram) <a name="impl-3"></a>
-
-## Usage <a name="usage-3"></a>
-`JavaGrepApp <pattern> <directory> <output>`
-## Design and Implementations <a name="design-3"></a>
+<a name="impl-3"></a>
+## Implementation (diagram)
 This app was implemented by core Java API
-## Limitations <a name="improv-3"></a>
+<a name="usage-3"></a>
+## Usage
+`JavaGrepApp <pattern> <directory> <output>`
+<a name="improv-3"></a>
+## Limitations
 The app's regular expression matching functionality depends on Java's `matches()` method in the String library.
 
