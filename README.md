@@ -1,13 +1,39 @@
 # Summary
+* (Currently working on the diagrams)
+
 This project consists of 3 independent mini-projects.
-[table of contents]
+- [Java Twitter App](#java-twitter-app)
+    - [Introduction](##intro-1)
+    - [General Usage](##general-usage)
+    - [Implementation](##impl-1)
+    - [Get](##get)
+    - [Post](##post)
+    - [Delete](#delete)
+- [Java JDBC App](#java-jdbc-app)
+    - [Introduction](##intro-2)
+    - [Implementation](##impl-2)
+    - [Issues/Improvements](##improv-2)
+- [Java Grep App](#java-grep-app)
+    - [Introduction](##intro-3)
+    - [Implementation](##impl-3)
+    - [Issues/Improvements](##improv-3)
 
 # Java Twitter App
-## Introduction
-This Java application interacts with the Twitter API in order to view tweets of a given user, and manage the user's tweets.
-### Usage
-`TwitterCLI <action> <args>`
+## Introduction <a id="intro-1"></a>
+This Java application interacts with the Twitter API and is capable of:
+ 1. viewing tweets of anyone's public timeline
+ 2. posting tweets on the user's* timeline 
+ 3. deleting user tweets
+ 
+ * The user is an authorized entity with a dedicated Twitter API token and a [developer app](https://developer.twitter.com/). 
 
+## Implementation (diagram) <a id="impl-1"></a>
+
+### General Usage
+`TwitterCLI <action> <args>` 
+
+Example:<br>
+`java -jar java_apps.jar post "My tweet from Java Apps" "-89.50:170.25"`
 ## Get
 ### Description
 Look up a tweet by ID and print the
@@ -41,24 +67,28 @@ Output deleted tweet id and print deleted tweet object.
 
 where `tweet_id` is a comma-separated list of tweets.
 
-# Java Grep App
-## Introduction
-Java Grep emulates the Unix grep command with limited functionality.
-It searches for any regex PATTERN found in the files in the DIRECTORY recursively, and outputs the lines matching the given PATTERN. 
-## Usage
-`JavaGrepApp <pattern> <directory> <output>`
-## Design and Implementations
-This app was implemented by core Java API
-## Limitations
-The app's regular expression matching functionality depends on Java's `matches()` method in the String library.
-
 # Java JDBC App
-## Introduction
+## Introduction <a id="intro-2"></a>
 This Java application interacts with a Postgres database server. 
 
 The current demo displays some data retrieved from 3 tables. 
-## Usage
-`JDBCExecutor`
 
-## Improvements
+## Implementation (diagram) <a id="impl-2"></a>
+
+## Improvements <a id="improv-2"></a>
 The app can be modified to display data based on the user's input
+
+# Java Grep App
+## Introduction <a id="intro-3"></a>
+Java Grep emulates the Unix grep command with limited functionality.
+It searches for any regex PATTERN found in the files in the DIRECTORY recursively, and outputs the lines matching the given PATTERN. 
+
+## Implementation (diagram) <a id="impl-3"></a>
+
+## Usage <a id="usage-3"></a>
+`JavaGrepApp <pattern> <directory> <output>`
+## Design and Implementations <a id="design-3"></a>
+This app was implemented by core Java API
+## Limitations <a id="improv-3"></a>
+The app's regular expression matching functionality depends on Java's `matches()` method in the String library.
+
