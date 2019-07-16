@@ -31,7 +31,7 @@ This Java application interacts with the Twitter API and is capable of:
 
 <a name="impl-1"></a>
 ## Implementation (diagram)
-
+![](diagrams/TwitterAppArchitectureR2.svg)
 ### General Usage
 `TwitterCLI <action> <args>` 
 
@@ -82,6 +82,7 @@ The current demo displays some data retrieved from 3 tables.
 
 <a name="impl-2"></a>
 ## Implementation (diagram)
+![](diagrams/jdbc_app_diagram.png)
 
 <a name="improv-2"></a>
 ## Limitation/Improvements
