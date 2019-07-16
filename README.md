@@ -77,21 +77,6 @@ where `tweet_id` is a comma-separated list of tweets.
 <a name="improv-1"></a>
 ## Limitation/Improvements
 
-# Java JDBC App
-<a name="intro-2"></a>
-## Introduction
-This Java application interacts with a Postgres database server. 
-
-The current demo displays some data retrieved from 3 tables. 
-
-<a name="impl-2"></a>
-## Implementation (diagram)
-![](asset/jdbc_app_diagram.png)
-
-<a name="improv-2"></a>
-## Limitation/Improvements
-The app can be modified to display data based on the user's input
-
 # Java Grep App
 <a name="intro-3"></a>
 ## Introduction
@@ -108,3 +93,20 @@ This app was implemented by core Java API
 ## Limitation/Improvements
 The app's regular expression matching functionality depends on Java's `matches()` method in the String library.
 
+# Java JDBC App
+<a name="intro-2"></a>
+## Introduction
+This Java application interacts with a Postgres database server. 
+
+The current demo displays some data retrieved from 3 tables. 
+
+<a name="impl-2"></a>
+## Implementation (diagram)
+### Class Diagram
+![](asset/JDBCApp.png)
+### Entity Relationship
+![](asset/JDBC_ER.png)
+
+<a name="improv-2"></a>
+## Limitation/Improvements
+The app can be modified to display data based on the user's input
