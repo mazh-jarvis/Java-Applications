@@ -34,7 +34,7 @@ This Java application interacts with the Twitter API and is capable of:
 ### Class Diagram
 
 ### Entity Relationship Model
-![](diagrams/TwitterAppArchitectureR2.png)
+![](asset/TwitterAppArchitectureR2.png)
 
 ### General Usage
 `TwitterCLI <action> <args>` 
@@ -86,7 +86,7 @@ The current demo displays some data retrieved from 3 tables.
 
 <a name="impl-2"></a>
 ## Implementation (diagram)
-![](diagrams/jdbc_app_diagram.png)
+![](asset/jdbc_app_diagram.png)
 
 <a name="improv-2"></a>
 ## Limitation/Improvements
