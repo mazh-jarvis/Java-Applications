@@ -9,6 +9,7 @@ This project consists of 3 independent mini-projects.
     - [Get](#get)
     - [Post](#post)
     - [Delete](#delete)
+    - [Issues/Improvements](#improv-1)
 - [Java JDBC App](#java-jdbc-app)
     - [Introduction](#intro-2)
     - [Implementation](#impl-2)
@@ -69,6 +70,9 @@ Output deleted tweet id and print deleted tweet object.
 
 where `tweet_id` is a comma-separated list of tweets.
 
+<a name="improv-1"></a>
+## Limitation/Improvements
+
 # Java JDBC App
 <a name="intro-2"></a>
 ## Introduction
@@ -80,7 +84,7 @@ The current demo displays some data retrieved from 3 tables.
 ## Implementation (diagram)
 
 <a name="improv-2"></a>
-## Improvements
+## Limitation/Improvements
 The app can be modified to display data based on the user's input
 
 # Java Grep App
@@ -96,6 +100,6 @@ This app was implemented by core Java API
 ## Usage
 `JavaGrepApp <pattern> <directory> <output>`
 <a name="improv-3"></a>
-## Limitations
+## Limitation/Improvements
 The app's regular expression matching functionality depends on Java's `matches()` method in the String library.
 
