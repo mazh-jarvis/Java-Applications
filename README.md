@@ -30,11 +30,10 @@ This Java application interacts with the Twitter API and is capable of:
  * The user is an authorized entity with a dedicated Twitter API token and a [developer app](https://developer.twitter.com/). 
 
 <a name="impl-1"></a>
-## Implementation (diagram)
-### Class Diagram
+## Implementation
 
-### Entity Relationship Model
-![](asset/TwitterAppArchitectureR2.png)
+### Class Diagram
+![](asset/TwitterApp.png)
 
 ### General Usage
 `TwitterCLI <action> <args>` 
@@ -49,11 +48,11 @@ JSON document if `[field1,fields2]` is empty.
 Otherwise, only show user specified `[fields]` in the
 JSON document.
 ### Usage
-`TwitterCLI show <tweet_id> [field1, field2]"`
+`TwitterCLI show <tweet_id> <field..>"`
 
 where:
  * `tweet_id` is the tweet id, same as the `idStr` attribute
- * `[field1, field2]` (Optional) comma-separated list of top-level fields from the tweet object (similar to the `SELECT` clause in SQL).
+ * `field..` is space-separated list of top-level fields from the tweet object (similar to the `SELECT` clause in SQL).
 
 ## Post
 ### Description
@@ -66,9 +65,7 @@ where `tweet_text` cannot exceed 140 Unicode-encoded(UTF-8) characters
 
 ## Delete
 ### Description
-Delete a list of tweets selected by id
-
-Output deleted tweet id and print deleted tweet object.
+Delete a list of tweets selected by id. Output a list of deleted tweet id's.
 ### Usage
 `TwitterCLI delete <tweet_ids>`
 
@@ -76,6 +73,10 @@ where `tweet_id` is a comma-separated list of tweets.
 
 <a name="improv-1"></a>
 ## Limitation/Improvements
+Here's some points on how the twitter app could be improved:
+* Emulate an update operation
+* Confirm user's location based on geo-data before tweeting
+* Cache tweets for show and delete operations (let user know if tweet(s) don't exist quicker)
 
 # Java Grep App
 <a name="intro-3"></a>
