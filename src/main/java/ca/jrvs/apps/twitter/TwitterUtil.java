@@ -23,6 +23,7 @@ import java.util.stream.Stream;
 
 public class TwitterUtil {
 
+    // api stuff
     public static final int HTTP_OK = 200;
     public static final String BASE_URI = "https://api.twitter.com/1.1/statuses";
     public static final String ENDPOINT_GET = "show";
@@ -40,18 +41,18 @@ public class TwitterUtil {
     public static final String SERVICE_POST_USAGE = SERVICE_USAGE_TEMP + " post <status-text> <longitude>:<altitude>";
     public static final String SERVICE_SHOW_USAGE = SERVICE_USAGE_TEMP + " show <id> <field..>";
     public static final String SERVICE_DEL_USAGE = SERVICE_USAGE_TEMP + " delete <id..>";
-    public static final String NO_SUCH_TWEET_EX = "No tweet found with that id";
     // misc
     private static final String COOKIE_DATE_FORMAT = "EEE, d MMM yyyy HH:mm:ss z";
-    public static final String POST_SUCCESS_MSG_FORMAT = "Success: a new tweet was posted (id: %s)\n";
     private static final int MAX_TWEET_LEN = 150;
     public static final int CMD_DEFAULT_ARG_INDEX = 1;
     public static final int CMD_SHOW_ARG_INDEX = 2;
-    // exception constants
+    // exception/info constants
     public static final String INVALID_ID_EX = "The provided id is not valid!";
     public static final String INVALID_RESPONSE_EX = "Received a tweet with no content";
     public static final String INVALID_GEO_FORMAT = "Invalid coordinates format (ex: -122.43:37.77)";
-    // Json object mapper singleton
+    public static final String NO_SUCH_TWEET_EX = "No tweet found with that id";
+    public static final String POST_SUCCESS_MSG_FORMAT = "Success: a new tweet was posted (id: %s)\n";
+    // json object mapper singleton
     private static ObjectMapper mapper;
 
     // class not instantiable
@@ -162,10 +163,18 @@ public class TwitterUtil {
             throw new HTTPException(status);
     }
 
+    /**
+     * Set request headers to avoid JVM warning messages
+     * @param request http request
+     */
     public static void setRequestHeaders(HttpRequestBase request) {
         request.getParams().setParameter(CookieSpecPNames.DATE_PATTERNS, Arrays.asList(COOKIE_DATE_FORMAT));
     }
 
+    /**
+     * Print http response object on the event of error
+     * @param jsonResponse json response as input stream
+     */
     public static void printHttpError(InputStream jsonResponse) {
         new BufferedReader(new InputStreamReader(jsonResponse)).lines().forEach(System.out::println);
     }

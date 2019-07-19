@@ -51,6 +51,10 @@ public class TwitterCLIRunner {
         }
     }
 
+    /**
+     * Show a tweet
+     * @param args command-line arguments
+     */
     private void showTweet(String[] args) {
         String idStr = args[1];
         if (args.length < SHOW_MIN_ARGS) {
@@ -68,6 +72,10 @@ public class TwitterCLIRunner {
         }
     }
 
+    /**
+     * Delete a tweet
+     * @param args command line arguments
+     */
     private void deleteTweet(String[] args) {
         if (args.length < DEL_MIN_ARGS) {
             System.err.println(TwitterUtil.SERVICE_DEL_USAGE); return;
@@ -88,12 +96,17 @@ public class TwitterCLIRunner {
         }
     }
 
+    /**
+     * Post a tweet
+     * @param args command-line arguments
+     * @return the posted tweet
+     */
     private Tweet postTweet(String[] args) {
         if (args.length < POST_MIN_ARGS) {
             System.err.println(TwitterUtil.SERVICE_POST_USAGE); return null;
         }
         String text = args[1];
-        coordinateParser = getCoordinateParser(args);
+        coordinateParser = getCoordinateParser(args[TwitterUtil.CMD_DEFAULT_ARG_INDEX +1]);
         Tweet tweet = null;
         try {
             Double longitude = coordinateParser.nextDouble();
@@ -111,9 +124,14 @@ public class TwitterCLIRunner {
         return tweet;
     }
 
-    private Scanner getCoordinateParser(String[] args) {
+    /**
+     * Helper function to parse input coordinates
+     * @param coordinatesAsArg coordinates from user input
+     * @return a coordinate parser
+     */
+    private Scanner getCoordinateParser(String coordinatesAsArg) {
         if (coordinateParser == null)
-            coordinateParser = new Scanner(args[TwitterUtil.CMD_DEFAULT_ARG_INDEX +1]);
+            coordinateParser = new Scanner(coordinatesAsArg);
         coordinateParser.useDelimiter(COLON);
         return coordinateParser;
     }
