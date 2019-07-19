@@ -33,7 +33,7 @@ This Java application interacts with the Twitter API and is capable of:
 ## Implementation
 
 ### Class Diagram
-![](asset/TwitterApp.png)
+![](assets/TwitterApp.png)
 
 ### General Usage
 `TwitterCLI <action> <args>` 
@@ -85,7 +85,7 @@ Java Grep emulates the Unix grep command with limited functionality.
 It searches for any regex PATTERN found in the files in the DIRECTORY recursively, and outputs the lines matching the given PATTERN. 
 
 <a name="impl-3"></a>
-## Implementation (diagram)
+## Implementation
 This app was implemented by core Java API
 <a name="usage-3"></a>
 ## Usage
@@ -102,11 +102,11 @@ This Java application interacts with a Postgres database server.
 The current demo displays some data retrieved from 3 tables. 
 
 <a name="impl-2"></a>
-## Implementation (diagram)
+## Implementation
 ### Class Diagram
-![](asset/JDBCApp.png)
+![](assets/JDBCApp.png)
 ### Entity Relationship
-![](asset/JDBC_ER.png)
+![](assets/jdbc_app_er_x2_I.png)
 
 <a name="improv-2"></a>
 ## Limitation/Improvements
