@@ -9,18 +9,15 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.cookie.params.CookieSpecPNames;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.springframework.stereotype.Repository;
 
-import java.io.BufferedReader;
+import javax.xml.ws.http.HTTPException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Arrays;
 
 @Repository
 public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper {
@@ -56,15 +53,14 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
     @Override
     public Tweet findById(String s) throws URISyntaxException, IOException {
         if(TwitterUtil.validateIDStr(s) == false)
-            return null;
+            throw new IllegalArgumentException(TwitterUtil.INVALID_ID_EX);
         // build the request URI
         URI uri = new URI(new URIBuilder().base(TwitterUtil.BASE_URI)
                     .endpoint(TwitterUtil.ENDPOINT_GET).param(TwitterUtil.PARAM_GET, s).toString());
         HttpResponse response = httpGet(uri);
-        if(TwitterUtil.checkStatus(response) == false)
-            return null;
-        // json stream
         InputStream jsonResponse = response.getEntity().getContent();
+        if( !checkStatus(response, jsonResponse) )
+            return null;
         return TwitterUtil.toObjectFromJson(jsonResponse, Tweet.class);
     }
 
@@ -80,12 +76,9 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
                 .param(TwitterUtil.PARAM_LONG, xy.getLongitudeStr())
                 .toString());
         HttpResponse response = httpPost(uri);
-        if (TwitterUtil.checkStatus(response) == false ) {
-            InputStream jsonResponse = response.getEntity().getContent();
-            new BufferedReader(new InputStreamReader(jsonResponse)).lines().forEach(System.out::println);
-            return null;
-        }
         InputStream jsonResponse = response.getEntity().getContent();
+        if( !checkStatus(response, jsonResponse) )
+            return null;
         return TwitterUtil.toObjectFromJson(jsonResponse, Tweet.class);
     }
 
@@ -96,10 +89,19 @@ public class TwitterRestDao implements CrdRepository<Tweet, String>, HttpHelper 
         URI uri = new URI(new URIBuilder().base(TwitterUtil.BASE_URI)
             .route(TwitterUtil.ROUTE_DELETE).endpoint(s).toString());
         HttpResponse response = httpPost(uri);
-        if (TwitterUtil.checkStatus(response) == false )
-            return null;
         InputStream jsonResponse = response.getEntity().getContent();
+        if( !checkStatus(response, jsonResponse) )
+            return null;
         return TwitterUtil.toObjectFromJson(jsonResponse, Tweet.class);
     }
 
+    private boolean checkStatus(HttpResponse response, InputStream jsonResponse) {
+        try {
+            TwitterUtil.checkStatus(response);
+        } catch (HTTPException e){
+            TwitterUtil.printHttpError(jsonResponse);
+            return false;
+        }
+        return true;
+    }
 }

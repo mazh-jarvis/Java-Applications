@@ -39,7 +39,7 @@ public class TwitterServiceImp implements TwitterService {
         if (result == null)
             throw new NullPointerException();
         else if (result.getText().isEmpty())
-            throw new InvalidObjectException(TwitterUtil.INVALID_EX_MSG);
+            throw new InvalidObjectException(TwitterUtil.INVALID_RESPONSE_EX);
         return result;
     }
 
@@ -55,10 +55,10 @@ public class TwitterServiceImp implements TwitterService {
             try {
                 Field refField = tweet.getClass().getDeclaredField(field);
                 PropertyDescriptor descriptor = new PropertyDescriptor(refField.getName(), tweet.getClass());
-                long resultId =  (long) descriptor
+                Object fieldValue = descriptor
                         .getReadMethod()
                         .invoke(tweet);
-                System.out.println( descriptor.getDisplayName() + ": " + resultId );
+                System.out.println( descriptor.getDisplayName() + ": " + fieldValue );
             } catch (NoSuchFieldException e) {
                 e.printStackTrace();
             } catch (IntrospectionException e) {
@@ -75,12 +75,14 @@ public class TwitterServiceImp implements TwitterService {
     }
 
     @Override
-    public List<Tweet> deleteTweets(String[] ids) throws IOException, URISyntaxException {
+    public List<Tweet> deleteTweets(String[] ids) throws IOException, URISyntaxException, NoSuchElementException {
         List<Tweet> tweets = new ArrayList<>();
         for (String id : ids) {
             Tweet tweet = (Tweet) dao.deleteById(id);
-            if (tweet != null && tweet.getText().length() == 0)
-                throw new InvalidObjectException(TwitterUtil.INVALID_EX_MSG);
+            if (tweet == null)
+                throw new NoSuchElementException(TwitterUtil.NO_SUCH_TWEET_EX);
+            else if (tweet.getText().length() == 0)
+                throw new InvalidObjectException(TwitterUtil.INVALID_RESPONSE_EX);
             tweets.add(tweet);
         }
         return tweets;

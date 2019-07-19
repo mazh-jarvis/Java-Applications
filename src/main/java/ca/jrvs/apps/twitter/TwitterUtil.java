@@ -13,8 +13,11 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.cookie.params.CookieSpecPNames;
 
+import javax.xml.ws.http.HTTPException;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
@@ -30,21 +33,24 @@ public class TwitterUtil {
     public static final String PARAM_LAT = "lat";
     public static final String PARAM_LONG = "long";
     // service constants
-    public static final String INVALID_EX_MSG = "Received a tweet with no content";
     public static final double MAX_LAT = 90;
     public static final double MAX_LONG = 180;
-
     public static final String SERVICE_USAGE_TEMP = "Usage: java -jar java_apps.jar";
     public static final String SERVICE_APP_USAGE = SERVICE_USAGE_TEMP + " <command> <args>";
-    public static final String SERVICE_POST_USAGE = SERVICE_USAGE_TEMP + " post <status-text>";
+    public static final String SERVICE_POST_USAGE = SERVICE_USAGE_TEMP + " post <status-text> <longitude>:<altitude>";
     public static final String SERVICE_SHOW_USAGE = SERVICE_USAGE_TEMP + " show <id> <field..>";
     public static final String SERVICE_DEL_USAGE = SERVICE_USAGE_TEMP + " delete <id..>";
-
-    public static final String COOKIE_DATE_FORMAT = "EEE, d MMM yyyy HH:mm:ss z";
-    public static final String POST_SUCCESS_MSG_FORMAT = "# Success: a new tweet was posted (id: %s)\n";
-
-    public static final int CMD_ARG_INDEX = 2;
+    public static final String NO_SUCH_TWEET_EX = "No tweet found with that id";
+    // misc
+    private static final String COOKIE_DATE_FORMAT = "EEE, d MMM yyyy HH:mm:ss z";
+    public static final String POST_SUCCESS_MSG_FORMAT = "Success: a new tweet was posted (id: %s)\n";
     private static final int MAX_TWEET_LEN = 150;
+    public static final int CMD_DEFAULT_ARG_INDEX = 1;
+    public static final int CMD_SHOW_ARG_INDEX = 2;
+    // exception constants
+    public static final String INVALID_ID_EX = "The provided id is not valid!";
+    public static final String INVALID_RESPONSE_EX = "Received a tweet with no content";
+    public static final String INVALID_GEO_FORMAT = "Invalid coordinates format (ex: -122.43:37.77)";
     // Json object mapper singleton
     private static ObjectMapper mapper;
 
@@ -72,10 +78,7 @@ public class TwitterUtil {
      */
     public static boolean validateIDStr(String id) {
         Stream<Character> charStream = id.chars().mapToObj(c -> (char)c);
-        boolean result = charStream.allMatch(Character::isDigit);
-        if(!result)
-            System.err.println("# ERROR: Invalid ID format!");
-        return result;
+        return charStream.allMatch(Character::isDigit);
     }
 
     /**
@@ -153,16 +156,17 @@ public class TwitterUtil {
      * @param response server response
      * @return true if status was OK
      */
-    public static boolean checkStatus(HttpResponse response) {
+    public static void checkStatus(HttpResponse response) {
         int status = response.getStatusLine().getStatusCode();
-        if(status != TwitterUtil.HTTP_OK) {
-            System.err.println("Server responded with error " + status);
-            return false;
-        }
-        return true;
+        if(status != TwitterUtil.HTTP_OK)
+            throw new HTTPException(status);
     }
 
     public static void setRequestHeaders(HttpRequestBase request) {
         request.getParams().setParameter(CookieSpecPNames.DATE_PATTERNS, Arrays.asList(COOKIE_DATE_FORMAT));
+    }
+
+    public static void printHttpError(InputStream jsonResponse) {
+        new BufferedReader(new InputStreamReader(jsonResponse)).lines().forEach(System.out::println);
     }
 }

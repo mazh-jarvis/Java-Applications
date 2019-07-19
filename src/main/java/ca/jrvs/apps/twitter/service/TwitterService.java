@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service("service")
 public interface TwitterService {
@@ -34,5 +35,5 @@ public interface TwitterService {
      * @throws IOException
      * @throws URISyntaxException
      */
-    List<Tweet> deleteTweets(String[] ids) throws IOException, URISyntaxException;
+    List<Tweet> deleteTweets(String[] ids) throws IOException, URISyntaxException, NoSuchElementException;
 }
